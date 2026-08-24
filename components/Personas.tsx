@@ -40,7 +40,7 @@ export function Personas() {
             const IconEl = iconKey ? Icon[iconKey] : null;
             return (
               <Reveal key={p.name} delay={(i % 2) * 0.1}>
-                <div className="group relative flex h-full flex-col overflow-hidden rounded-card-lg border border-ink-200 bg-white p-7 shadow-card transition-all duration-500 hover:shadow-raised">
+                <div className="group relative flex h-full flex-col overflow-hidden rounded-card-lg border border-ink-200 bg-white p-7 shadow-card transition-all duration-500 ease-premium hover:-translate-y-1 hover:shadow-raised">
                   {/* Background illustration */}
                   {illustration && (
                     <div

@@ -84,10 +84,10 @@ export function FAQ() {
           <p className="text-sm text-ink-500">
             Still wondering something?{" "}
             <a
-              href="mailto:hello@snapenvoice.app"
+              href="mailto:snapenvoice@gmail.com"
               className="font-semibold text-cobalt-600 transition-colors hover:text-cobalt-700 hover:underline"
             >
-              hello@snapenvoice.app
+              snapenvoice@gmail.com
             </a>
           </p>
         </Reveal>

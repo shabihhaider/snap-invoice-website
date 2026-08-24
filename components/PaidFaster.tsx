@@ -1,15 +1,21 @@
 "use client";
 
+import { useRef, useEffect } from "react";
+import { useReducedMotion } from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Reveal } from "./Reveal";
 import { PhoneShot } from "./PhoneShot";
 import { Icon } from "./Icons";
 import { GradientBlob } from "./GradientBlob";
 
+gsap.registerPlugin(ScrollTrigger);
+
 const POINTS = [
   {
     n: "1",
     title: "See who owes you, in red",
-    body: "Overdue invoices surface themselves \u2014 days late, amount, and a Remind button right on the invoice.",
+    body: "Overdue invoices surface themselves — days late, amount, and a Remind button right on the invoice.",
   },
   {
     n: "2",
@@ -19,13 +25,40 @@ const POINTS = [
   {
     n: "3",
     title: "Every reminder, tracked",
-    body: "A timeline of every nudge you\u2019ve sent, so you always know where a payment stands.",
+    body: "A timeline of every nudge you’ve sent, so you always know where a payment stands.",
   },
 ];
 
 export function PaidFaster() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const phonesRef = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
+
+  useEffect(() => {
+    if (reduce) return;
+    const section = sectionRef.current;
+    const phones = phonesRef.current;
+    if (!section || !phones) return;
+
+    const ctx = gsap.context(() => {
+      gsap.from(phones, {
+        y: 60,
+        opacity: 0.4,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 80%",
+          end: "top 30%",
+          scrub: 1,
+        },
+      });
+    }, section);
+
+    return () => ctx.revert();
+  }, [reduce]);
+
   return (
-    <section className="relative overflow-hidden bg-ink-950 py-28 text-white sm:py-36">
+    <section ref={sectionRef} className="relative overflow-hidden bg-ink-950 py-28 text-white sm:py-36">
       <div className="pointer-events-none absolute inset-0">
         <GradientBlob color="cobalt" size={600} className="left-[15%] top-0 opacity-50" />
         <GradientBlob color="amber" size={450} className="bottom-0 right-[5%] opacity-35" />
@@ -45,15 +78,15 @@ export function PaidFaster() {
           </p>
         </Reveal>
 
-        {/* Three phones — all visible, scaled down on mobile */}
-        <div className="mt-14 flex items-end justify-center gap-2 sm:gap-6 lg:gap-8">
+        {/* Three phones with scroll-driven entrance */}
+        <div ref={phonesRef as React.RefObject<HTMLDivElement>} className="mt-14 flex items-end justify-center gap-2 sm:gap-6 lg:gap-8">
           <Reveal delay={0.05}>
             <div className="hidden sm:block">
               <PhoneShot
                 src="/screenshots/09-invoice-detail-overdue-remind.webp"
                 alt="Invoice detail with overdue banner and Remind button"
                 width={190}
-                className="-rotate-3 opacity-90"
+                className="-rotate-3 opacity-90 transition-transform duration-700 ease-premium hover:rotate-0 hover:opacity-100"
               />
             </div>
             <div className="sm:hidden">
@@ -89,7 +122,7 @@ export function PaidFaster() {
                 src="/screenshots/10-invoice-reminders-timeline.webp"
                 alt="Reminders timeline showing sent notifications"
                 width={190}
-                className="rotate-3 opacity-90"
+                className="rotate-3 opacity-90 transition-transform duration-700 ease-premium hover:rotate-0 hover:opacity-100"
               />
             </div>
             <div className="sm:hidden">
@@ -103,11 +136,11 @@ export function PaidFaster() {
           </Reveal>
         </div>
 
-        {/* Numbered points connected to phones */}
+        {/* Numbered points */}
         <div className="mt-14 grid gap-6 sm:grid-cols-3 sm:gap-8">
           {POINTS.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.1} className="text-center">
-              <div className="mx-auto mb-3 flex h-9 w-9 items-center justify-center rounded-full bg-amber-500/15 font-display text-sm font-bold text-amber-400">
+              <div className="mx-auto mb-3 flex h-9 w-9 items-center justify-center rounded-full bg-amber-500/15 font-display text-sm font-bold text-amber-400 transition-transform duration-500 ease-premium hover:scale-110">
                 {p.n}
               </div>
               <h3 className="font-display text-lg font-extrabold">{p.title}</h3>

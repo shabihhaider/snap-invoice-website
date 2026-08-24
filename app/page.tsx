@@ -45,9 +45,11 @@ function StructuredData() {
         description: BRAND.promise,
         image: `${SITE_URL}/og.png`,
         screenshot: [
-          `${SITE_URL}/screenshots/05-dashboard-home-monthly-revenue.webp`,
-          `${SITE_URL}/screenshots/09-invoice-detail-overdue-remind.webp`,
-          `${SITE_URL}/screenshots/19-estimate-pdf-preview-classic-template.webp`,
+          `${SITE_URL}/app-screenshots/1-dashboard-revenue.png`,
+          `${SITE_URL}/app-screenshots/2-pdf-photo-proof.png`,
+          `${SITE_URL}/app-screenshots/3-invoice-detail.png`,
+          `${SITE_URL}/app-screenshots/5-send-estimates.png`,
+          `${SITE_URL}/app-screenshots/7-automatic-reminders.png`,
         ],
         offers: {
           "@type": "Offer",
@@ -77,6 +79,14 @@ function StructuredData() {
   );
 }
 
+function DarkToLight() {
+  return <div aria-hidden className="h-px bg-gradient-to-r from-transparent via-ink-200 to-transparent" />;
+}
+
+function LightToDark() {
+  return <div aria-hidden className="h-px bg-gradient-to-r from-transparent via-ink-700/30 to-transparent" />;
+}
+
 export default function Home() {
   return (
     <>
@@ -87,13 +97,20 @@ export default function Home() {
         <Marquee />
         <Problem />
         <HowItWorks />
+        <LightToDark />
         <Features />
+        <DarkToLight />
         <Screenshots />
+        <LightToDark />
         <PaidFaster />
+        <DarkToLight />
         <Compare />
+        <LightToDark />
         <Pricing />
+        <DarkToLight />
         <Personas />
         <FAQ />
+        <LightToDark />
         <FinalCta />
       </main>
       <Footer />

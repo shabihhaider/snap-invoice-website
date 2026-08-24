@@ -1,28 +1,79 @@
 "use client";
 
+import { useRef, useEffect } from "react";
+import { useReducedMotion } from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FEATURES, STATS } from "@/lib/content";
 import { Reveal } from "./Reveal";
 import { Icon } from "./Icons";
 import { GradientBlob } from "./GradientBlob";
 
+gsap.registerPlugin(ScrollTrigger);
+
 export function Features() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const blobRef1 = useRef<HTMLDivElement>(null);
+  const blobRef2 = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
+
+  useEffect(() => {
+    if (reduce) return;
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const ctx = gsap.context(() => {
+      if (blobRef1.current) {
+        gsap.to(blobRef1.current, {
+          y: -80,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1.2,
+          },
+        });
+      }
+      if (blobRef2.current) {
+        gsap.to(blobRef2.current, {
+          y: 60,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1.5,
+          },
+        });
+      }
+    }, section);
+
+    return () => ctx.revert();
+  }, [reduce]);
+
   return (
     <section
+      ref={sectionRef}
       id="features"
       className="relative overflow-hidden bg-ink-950 py-28 text-white sm:py-36"
     >
-      {/* Background blobs */}
+      {/* Background blobs with parallax */}
       <div className="pointer-events-none absolute inset-0">
-        <GradientBlob
-          color="cobalt"
-          size={500}
-          className="right-[-5%] top-[20%] opacity-60"
-        />
-        <GradientBlob
-          color="amber"
-          size={400}
-          className="-left-[8%] bottom-[10%] opacity-40"
-        />
+        <div ref={blobRef1 as React.RefObject<HTMLDivElement>}>
+          <GradientBlob
+            color="cobalt"
+            size={500}
+            className="right-[-5%] top-[20%] opacity-60"
+          />
+        </div>
+        <div ref={blobRef2 as React.RefObject<HTMLDivElement>}>
+          <GradientBlob
+            color="amber"
+            size={400}
+            className="-left-[8%] bottom-[10%] opacity-40"
+          />
+        </div>
         <div className="bg-grid-dark absolute inset-0 opacity-30" />
       </div>
 
@@ -61,7 +112,7 @@ export function Features() {
                 >
                   {/* Icon */}
                   <div
-                    className={`mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl transition-transform duration-500 group-hover:scale-110 ${
+                    className={`mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 ${
                       isMoat
                         ? "bg-amber-500/15 text-amber-400"
                         : "bg-cobalt-500/15 text-cobalt-300"
@@ -96,7 +147,7 @@ export function Features() {
           })}
         </div>
 
-        {/* Stats strip with counting numbers */}
+        {/* Stats strip */}
         <Reveal className="mt-8">
           <div className="grid grid-cols-2 gap-4 rounded-card-lg border border-white/[0.06] bg-white/[0.02] p-7 sm:grid-cols-4">
             {STATS.map((s) => (

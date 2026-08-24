@@ -96,7 +96,7 @@ export function Compare() {
               </thead>
               <tbody>
                 {rows.map((row, ri) => (
-                  <tr key={row.label}>
+                  <tr key={row.label} className="transition-colors duration-300 hover:bg-ink-50/50">
                     <td className="border-t border-ink-100 p-4 text-sm font-semibold text-ink-800">
                       {row.label}
                     </td>
