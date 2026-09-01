@@ -99,8 +99,8 @@ export default function TermsPage() {
         <div>
           <h2 className="font-display text-xl font-bold text-white">8. Contact</h2>
           <p className="mt-2">
-            <a href="mailto:support@snapenvoice.app" className="text-cobalt-400 underline">
-              support@snapenvoice.app
+            <a href="mailto:snapenvoice@gmail.com" className="text-cobalt-400 underline">
+              snapenvoice@gmail.com
             </a>
           </p>
         </div>

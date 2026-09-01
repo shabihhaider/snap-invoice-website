@@ -131,8 +131,8 @@ export default function PrivacyPage() {
           <p className="mt-2">
             Material changes will be announced in the app&apos;s update notes and on this page.
             Questions:{" "}
-            <a href="mailto:support@snapenvoice.app" className="text-cobalt-400 underline">
-              support@snapenvoice.app
+            <a href="mailto:snapenvoice@gmail.com" className="text-cobalt-400 underline">
+              snapenvoice@gmail.com
             </a>
             .
           </p>
