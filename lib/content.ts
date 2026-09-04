@@ -217,7 +217,7 @@ export const PERSONAS = [
   {
     name: "Handymen",
     who: "Not technical. Big buttons, no jargon, no accounts.",
-    win: “”QuickBooks made me quit. This didn’t ask for my email and my second invoice took under a minute. The branding footer’s gone once I upgrade.””,
+    win: "“QuickBooks made me quit. This didn’t ask for my email and my second invoice took under a minute. The branding footer’s gone once I upgrade.”",
     trade: "Handyman",
   },
   {
