@@ -1,7 +1,12 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useTransform,
+  useReducedMotion,
+} from "framer-motion";
 import Image from "next/image";
 import { Reveal } from "./Reveal";
 
@@ -42,17 +47,32 @@ export function Screenshots() {
   const [dragBounds, setDragBounds] = useState({ left: 0, right: 0 });
   const reduce = useReducedMotion();
 
+  /* Drag offset, so the left edge-fade only appears once the rail has actually
+     been pulled. A permanently-on left mask washes out the first card. */
+  const x = useMotionValue(0);
+  const leftFadeOpacity = useTransform(x, [-48, 0], [1, 0]);
+
+  /*
+   * Bounds have to be remeasured whenever the rail's content box changes, not
+   * just on window resize: the cards below the fold load lazily, so measuring
+   * once on mount can capture a scrollWidth that is still settling and leave
+   * the rail draggable past its last card.
+   */
   useEffect(() => {
-    function calc() {
-      const container = containerRef.current;
-      const inner = innerRef.current;
-      if (!container || !inner) return;
+    const container = containerRef.current;
+    const inner = innerRef.current;
+    if (!container || !inner) return;
+
+    const calc = () => {
       const overflow = inner.scrollWidth - container.clientWidth;
       setDragBounds({ left: -Math.max(overflow, 0), right: 0 });
-    }
+    };
     calc();
-    window.addEventListener("resize", calc);
-    return () => window.removeEventListener("resize", calc);
+
+    const ro = new ResizeObserver(calc);
+    ro.observe(container);
+    ro.observe(inner);
+    return () => ro.disconnect();
   }, []);
 
   return (
@@ -79,11 +99,9 @@ export function Screenshots() {
           drag="x"
           dragConstraints={dragBounds}
           dragElastic={0.08}
+          style={{ x }}
           className="flex cursor-grab gap-4 px-5 pb-8 active:cursor-grabbing"
         >
-          {/* Left spacer */}
-          <div className="hidden w-[max(0px,calc((100vw-72rem)/2-1.25rem))] flex-none lg:block" />
-
           {SHOWCASE.map((s, i) => (
             <Reveal key={s.src} delay={i * 0.06} y={20}>
               <div className="group relative w-[200px] flex-none select-none sm:w-[230px] lg:w-[250px]">
@@ -112,8 +130,12 @@ export function Screenshots() {
           <div className="w-4 flex-none" />
         </motion.div>
 
-        {/* Edge fade masks */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-ink-50 to-transparent" />
+        {/* Edge fade masks — the left one fades in only once dragged */}
+        <motion.div
+          aria-hidden
+          style={{ opacity: leftFadeOpacity }}
+          className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-ink-50 to-transparent"
+        />
         <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-ink-50 to-transparent" />
       </div>
 
