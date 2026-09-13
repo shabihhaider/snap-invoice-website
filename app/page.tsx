@@ -2,6 +2,7 @@ import { Nav } from "@/components/Nav";
 import { Hero } from "@/components/Hero";
 import { Marquee } from "@/components/Marquee";
 import { Problem } from "@/components/Problem";
+import { PhotoProof } from "@/components/PhotoProof";
 import { HowItWorks } from "@/components/HowItWorks";
 import { Features } from "@/components/Features";
 import { Screenshots } from "@/components/Screenshots";
@@ -43,13 +44,13 @@ function StructuredData() {
         applicationCategory: "BusinessApplication",
         operatingSystem: "iOS",
         description: BRAND.promise,
-        image: `${SITE_URL}/og.png`,
+        image: `${SITE_URL}/og.jpg`,
         screenshot: [
-          `${SITE_URL}/app-screenshots/1-dashboard-revenue.png`,
-          `${SITE_URL}/app-screenshots/2-pdf-photo-proof.png`,
-          `${SITE_URL}/app-screenshots/3-invoice-detail.png`,
-          `${SITE_URL}/app-screenshots/5-send-estimates.png`,
-          `${SITE_URL}/app-screenshots/7-automatic-reminders.png`,
+          `${SITE_URL}/app-screenshots/1-dashboard-revenue.webp`,
+          `${SITE_URL}/app-screenshots/2-pdf-photo-proof.webp`,
+          `${SITE_URL}/app-screenshots/3-invoice-detail.webp`,
+          `${SITE_URL}/app-screenshots/5-send-estimates.webp`,
+          `${SITE_URL}/app-screenshots/7-automatic-reminders.webp`,
         ],
         offers: {
           "@type": "Offer",
@@ -96,6 +97,9 @@ export default function Home() {
         <Hero />
         <Marquee />
         <Problem />
+        <LightToDark />
+        <PhotoProof />
+        <DarkToLight />
         <HowItWorks />
         <LightToDark />
         <Features />

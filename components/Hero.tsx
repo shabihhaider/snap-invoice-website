@@ -183,10 +183,13 @@ export function Hero() {
                   <div className="hidden w-px bg-gradient-to-b from-transparent via-cobalt-600/30 to-transparent sm:block" />
                 )}
                 <div>
-                  <div className="font-display text-2xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-3xl">
+                  {/* leading repeated at the breakpoint: a responsive named
+                      text-* utility ships its own line-height in a later
+                      @media block and would otherwise override leading-*. */}
+                  <div className="font-display text-2xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-3xl sm:leading-[1.05]">
                     {s.value}
                   </div>
-                  <div className="text-[11px] font-semibold leading-tight text-ink-500 sm:text-sm">
+                  <div className="text-[11px] font-semibold leading-tight text-ink-500 sm:text-sm sm:leading-tight">
                     {s.label}
                   </div>
                 </div>
@@ -217,8 +220,9 @@ export function Hero() {
             <Tilt intensity={10}>
               <div className="[transform:rotateY(-8deg)_rotateX(3deg)]">
                 <PhoneShot
-                  src="/screenshots/05-dashboard-home-monthly-revenue.webp"
-                  alt="SnapEnvoice dashboard showing $47,250 invoiced this month, with invoices awaiting payment, estimates and overdue reminders"
+                  src="/app-screens/1-dashboard-revenue.webp"
+                  alt="SnapEnvoice dashboard showing $74,817.50 collected this month, 11 total invoices, 4 estimates and recent invoice activity"
+                  width={300}
                   priority
                   className="shadow-phone"
                 />

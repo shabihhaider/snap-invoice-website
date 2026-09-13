@@ -7,31 +7,31 @@ import { Reveal } from "./Reveal";
 
 const SHOWCASE = [
   {
-    src: "/app-screenshots/1-dashboard-revenue.png",
+    src: "/app-screenshots/1-dashboard-revenue.webp",
     alt: "See Your Revenue Clearly — Track income, outstanding and growth in one place",
   },
   {
-    src: "/app-screenshots/2-pdf-photo-proof.png",
+    src: "/app-screenshots/2-pdf-photo-proof.webp",
     alt: "Proof on Every Job — Attach before and after photos to every invoice",
   },
   {
-    src: "/app-screenshots/3-invoice-detail.png",
+    src: "/app-screenshots/3-invoice-detail.webp",
     alt: "Professional invoice detail view with line items, tax, and payment status",
   },
   {
-    src: "/app-screenshots/4-invoice-history.png",
+    src: "/app-screenshots/4-invoice-history.webp",
     alt: "Complete invoice history with payment status and smart filtering",
   },
   {
-    src: "/app-screenshots/5-send-estimates.png",
+    src: "/app-screenshots/5-send-estimates.webp",
     alt: "Send professional estimates and convert to invoices in one tap",
   },
   {
-    src: "/app-screenshots/6-manage-clients.png",
+    src: "/app-screenshots/6-manage-clients.webp",
     alt: "Manage clients with contact details and lifetime revenue tracking",
   },
   {
-    src: "/app-screenshots/7-automatic-reminders.png",
+    src: "/app-screenshots/7-automatic-reminders.webp",
     alt: "Automatic payment reminders with customizable tone and schedule",
   },
 ] as const;
@@ -97,8 +97,8 @@ export function Screenshots() {
                   <Image
                     src={s.src}
                     alt={s.alt}
-                    width={1284}
-                    height={2778}
+                    width={900}
+                    height={1947}
                     sizes="(max-width: 640px) 200px, (max-width: 1024px) 230px, 250px"
                     quality={85}
                     className="h-auto w-full"
