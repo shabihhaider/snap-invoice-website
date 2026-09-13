@@ -56,13 +56,13 @@ export function Screenshots() {
   }, []);
 
   return (
-    <section id="screens" className="relative overflow-hidden bg-ink-50 py-28 sm:py-36">
+    <section id="screens" className="section-padding relative overflow-hidden bg-ink-50">
       <div className="bg-grid pointer-events-none absolute inset-0 opacity-25" />
 
       <div className="relative mx-auto max-w-6xl px-5">
         <Reveal className="mx-auto max-w-2xl text-center">
           <p className="eyebrow text-cobalt-600">A look inside</p>
-          <h2 className="mt-4 font-display text-[clamp(28px,4vw,48px)] font-extrabold tracking-tight text-ink-900">
+          <h2 className="mt-4 font-display text-[clamp(30px,4vw,48px)] font-extrabold leading-[1.05] tracking-tight text-ink-900">
             Every screen earns its place.
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-ink-500">
@@ -79,7 +79,7 @@ export function Screenshots() {
           drag="x"
           dragConstraints={dragBounds}
           dragElastic={0.08}
-          className="flex cursor-grab gap-4 px-5 pb-8 active:cursor-grabbing sm:gap-5"
+          className="flex cursor-grab gap-4 px-5 pb-8 active:cursor-grabbing"
         >
           {/* Left spacer */}
           <div className="hidden w-[max(0px,calc((100vw-72rem)/2-1.25rem))] flex-none lg:block" />
@@ -118,8 +118,8 @@ export function Screenshots() {
       </div>
 
       {/* Drag hint */}
-      <p className="mt-2 text-center text-[13px] font-medium text-ink-400">
-        <span className="inline-flex items-center gap-1.5">
+      <p className="mt-2 text-center text-sm font-medium text-ink-400">
+        <span className="inline-flex items-center gap-2">
           <svg
             width="16"
             height="16"

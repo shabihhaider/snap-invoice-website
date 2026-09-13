@@ -56,13 +56,13 @@ export function HowItWorks() {
     <section
       ref={sectionRef}
       id="how"
-      className="relative bg-ink-50 py-28 sm:py-36"
+      className="section-padding relative bg-ink-50"
     >
       <div className="bg-grid pointer-events-none absolute inset-0 opacity-50" />
       <div className="relative mx-auto max-w-6xl px-5">
         <Reveal className="mx-auto max-w-2xl text-center">
           <p className="eyebrow text-cobalt-600">How it works</p>
-          <h2 className="mt-4 font-display text-[clamp(28px,4vw,48px)] font-extrabold tracking-tight text-ink-900">
+          <h2 className="mt-4 font-display text-[clamp(30px,4vw,48px)] font-extrabold leading-[1.05] tracking-tight text-ink-900">
             Three taps. One clean invoice.
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-ink-500">
@@ -72,7 +72,7 @@ export function HowItWorks() {
           </p>
         </Reveal>
 
-        <div className="relative mt-16 grid gap-10 md:grid-cols-3 md:gap-6 lg:gap-10">
+        <div className="relative mt-16 grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-6 lg:gap-10">
           {/* Connector line (desktop only) — positioned via flexbox alignment with step badges */}
           <div className="pointer-events-none absolute inset-x-0 top-0 z-0 hidden md:block" style={{ top: "calc(220px * 2400 / 1080 / 2)" }}>
             <div

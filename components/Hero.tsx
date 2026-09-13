@@ -73,7 +73,7 @@ export function Hero() {
     <section
       ref={sectionRef}
       id="top"
-      className="relative min-h-[100svh] overflow-hidden bg-ink-950 px-5 pb-20 pt-32 text-white sm:pt-36 lg:min-h-[92svh]"
+      className="relative min-h-[100svh] overflow-hidden bg-ink-950 px-5 pb-20 pt-32 text-white lg:min-h-[92svh]"
     >
       {/* ── Ambient background ── */}
       <div className="pointer-events-none absolute inset-0">
@@ -103,7 +103,7 @@ export function Hero() {
       </div>
 
       {/* ── Content grid ── */}
-      <div className="relative mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8">
+      <div className="relative mx-auto grid grid-cols-1 max-w-6xl items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-6">
         {/* ── Left: copy ── */}
         <div ref={contentRef}>
           {/* Eyebrow */}
@@ -111,7 +111,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease }}
-            className="inline-flex items-center gap-2 rounded-pill border border-amber-500/30 bg-amber-500/[0.06] px-3.5 py-[7px] text-[12px] font-bold tracking-[0.06em] text-amber-500"
+            className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/[0.06] px-3.5 py-[7px] text-[12px] font-bold tracking-[0.06em] text-amber-500"
           >
             <span
               className="h-[6px] w-[6px] rounded-full bg-amber-500"
@@ -125,7 +125,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.05, ease }}
-            className="mt-6 font-display text-[clamp(34px,5.5vw,60px)] font-extrabold leading-[1.02] tracking-[-0.025em] text-white"
+            className="mt-6 font-display text-[clamp(36px,5.5vw,60px)] font-extrabold leading-[1.02] tracking-[-0.025em] text-white"
           >
             Snap the job.
             <br />
@@ -144,7 +144,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.12, ease }}
-            className="mt-6 max-w-[460px] text-[17px] leading-[1.7] text-ink-300"
+            className="mt-6 max-w-[460px] text-lg leading-[1.7] text-ink-300"
           >
             The invoicing app that keeps up with your day. Photo proof on every
             invoice, prices in seconds, and smart reminders that chase
@@ -161,7 +161,7 @@ export function Hero() {
           >
             <div className="flex flex-wrap items-center gap-4">
               <AppStoreBadge />
-              <p className="text-[13px] font-medium text-ink-400">
+              <p className="text-sm font-medium text-ink-400">
                 Free on iPhone.
                 <br className="sm:hidden" />
                 <span className="hidden sm:inline"> </span>
@@ -175,18 +175,18 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.35 }}
-            className="mt-10 grid grid-cols-3 gap-4 sm:flex sm:gap-9"
+            className="mt-10 grid grid-cols-3 gap-4 sm:flex sm:gap-10"
           >
             {STATS.map((s, i) => (
-              <div key={s.value} className="flex gap-4 sm:gap-9">
+              <div key={s.value} className="flex gap-4 sm:gap-10">
                 {i > 0 && (
                   <div className="hidden w-px bg-gradient-to-b from-transparent via-cobalt-600/30 to-transparent sm:block" />
                 )}
                 <div>
-                  <div className="font-display text-[22px] font-extrabold tracking-tight text-white sm:text-[28px]">
+                  <div className="font-display text-2xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-3xl">
                     {s.value}
                   </div>
-                  <div className="text-[11px] font-semibold leading-tight text-ink-500 sm:text-[13px]">
+                  <div className="text-[11px] font-semibold leading-tight text-ink-500 sm:text-sm">
                     {s.label}
                   </div>
                 </div>
@@ -230,7 +230,7 @@ export function Hero() {
               className="absolute -left-4 top-16 rounded-[14px] border border-[rgba(74,222,128,0.3)] bg-ink-950/90 px-4 py-2.5 shadow-[0_12px_32px_rgba(0,0,0,0.5)] backdrop-blur-md sm:-left-14 lg:-left-24"
               style={{ animation: reduce ? "none" : "hero-floaty-tilt 6s ease-in-out infinite" }}
             >
-              <div className="text-[10px] font-bold tracking-[0.08em] text-[#4ADE80]">
+              <div className="text-[11px] font-bold tracking-[0.08em] text-[#4ADE80]">
                 PAID ✓
               </div>
               <div className="font-display text-[16px] font-extrabold text-white">
@@ -243,7 +243,7 @@ export function Hero() {
               className="absolute -right-2 bottom-28 rounded-[14px] border border-amber-500/30 bg-ink-950/90 px-4 py-2.5 shadow-[0_12px_32px_rgba(0,0,0,0.5)] backdrop-blur-md sm:-right-12 lg:-right-24"
               style={{ animation: reduce ? "none" : "hero-floaty 5.5s ease-in-out infinite" }}
             >
-              <div className="text-[10px] font-bold tracking-[0.08em] text-amber-500">
+              <div className="text-[11px] font-bold tracking-[0.08em] text-amber-500">
                 ⚡ REMINDER SENT
               </div>
               <div className="text-[12px] font-semibold text-ink-400">

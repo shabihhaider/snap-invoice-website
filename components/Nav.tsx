@@ -65,7 +65,7 @@ export function Nav() {
         </a>
 
         {/* Desktop nav links with active indicator */}
-        <div className="hidden items-center gap-1 md:flex">
+        <div className="hidden items-center gap-2 md:flex">
           {NAV_LINKS.map((l) => {
             const sectionId = l.href.replace("#", "");
             const isActive = activeSection === sectionId;
@@ -93,7 +93,7 @@ export function Nav() {
 
         <div className="flex items-center gap-2">
           <a href="#get-the-app" className="group hidden sm:inline-flex">
-            <span className="btn-primary gap-2.5 py-2 pl-5 pr-1.5 text-sm">
+            <span className="btn-primary gap-2 py-2 pl-5 pr-1.5 text-sm">
               Get the app
               <span className="btn-orb">
                 <Icon.arrow width={14} />
@@ -130,14 +130,14 @@ export function Nav() {
             : "pointer-events-none max-h-0 border-transparent opacity-0"
         }`}
       >
-        <div className="flex flex-col gap-1 p-4">
+        <div className="flex flex-col gap-2 p-4">
           {NAV_LINKS.map((l, i) => (
             <a
               key={l.href}
               href={l.href}
               onClick={closeMenu}
               style={{ transitionDelay: open ? `${60 + i * 50}ms` : "0ms" }}
-              className={`rounded-xl px-4 py-3 text-[15px] font-medium text-ink-200 transition-all duration-500 ease-premium hover:bg-white/5 hover:text-white ${
+              className={`rounded-xl px-4 py-3 text-base font-medium text-ink-200 transition-all duration-500 ease-premium hover:bg-white/5 hover:text-white ${
                 open
                   ? "translate-y-0 opacity-100"
                   : "translate-y-4 opacity-0"
@@ -149,7 +149,7 @@ export function Nav() {
           <a
             href="#get-the-app"
             onClick={closeMenu}
-            className="btn-primary group mt-3 gap-2.5 py-3 text-sm"
+            className="btn-primary group mt-3 gap-2 py-3 text-sm"
           >
             Get the app
             <span className="btn-orb">

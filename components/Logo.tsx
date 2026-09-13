@@ -10,7 +10,7 @@ export function Logo({
   invert?: boolean;
 }) {
   return (
-    <span className={`inline-flex items-center gap-2.5 ${className ?? ""}`}>
+    <span className={`inline-flex items-center gap-2 ${className ?? ""}`}>
       <img
         src="/logos/logomark.svg"
         alt="SnapEnvoice logo"
@@ -20,7 +20,7 @@ export function Logo({
       />
       {wordmark && (
         <span
-          className={`font-display text-[19px] font-extrabold tracking-tight ${
+          className={`font-display text-xl font-extrabold tracking-tight ${
             invert ? "text-white" : "text-ink-900"
           }`}
         >

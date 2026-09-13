@@ -60,7 +60,6 @@ const config: Config = {
       borderRadius: {
         card: "16px",
         "card-lg": "24px",
-        pill: "999px",
       },
       boxShadow: {
         card: "0 2px 8px rgba(15,23,42,0.06)",
@@ -112,22 +111,6 @@ const config: Config = {
           "0%": { backgroundPosition: "-120% 0" },
           "100%": { backgroundPosition: "220% 0" },
         },
-        "gradient-rotate": {
-          "0%": { transform: "rotate(0deg)" },
-          "100%": { transform: "rotate(360deg)" },
-        },
-        "scale-in": {
-          "0%": { transform: "scale(0.95)", opacity: "0" },
-          "100%": { transform: "scale(1)", opacity: "1" },
-        },
-        "slide-up": {
-          "0%": { transform: "translateY(20px)", opacity: "0" },
-          "100%": { transform: "translateY(0)", opacity: "1" },
-        },
-        "count-up": {
-          "0%": { transform: "translateY(100%)", opacity: "0" },
-          "100%": { transform: "translateY(0)", opacity: "1" },
-        },
       },
       animation: {
         aurora: "aurora-drift 20s ease-in-out infinite",
@@ -139,9 +122,6 @@ const config: Config = {
         float: "float-slow 6s ease-in-out infinite",
         "float-subtle": "float-subtle 8s ease-in-out infinite",
         "flash-sweep": "flash-sweep 1.4s cubic-bezier(0.32,0.72,0,1) 0.9s both",
-        "gradient-spin": "gradient-rotate 8s linear infinite",
-        "scale-in": "scale-in 0.5s cubic-bezier(0.32,0.72,0,1) both",
-        "slide-up": "slide-up 0.6s cubic-bezier(0.32,0.72,0,1) both",
       },
       transitionTimingFunction: {
         premium: "cubic-bezier(0.32, 0.72, 0, 1)",

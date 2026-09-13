@@ -42,7 +42,7 @@ export function Marquee() {
             return (
               <span
                 key={`${t}-${i}`}
-                className="flex items-center gap-2.5 font-display text-[15px] font-bold text-ink-300"
+                className="flex items-center gap-2 font-display text-base font-bold text-ink-300"
               >
                 {IconEl && <IconEl width={18} className="text-cobalt-400" />}
                 {t}
@@ -61,7 +61,7 @@ export function Marquee() {
             return (
               <span
                 key={`${t}-r-${i}`}
-                className="flex items-center gap-2.5 font-display text-[15px] font-bold text-ink-400"
+                className="flex items-center gap-2 font-display text-base font-bold text-ink-400"
               >
                 {IconEl && <IconEl width={18} className="text-amber-400" />}
                 {t}

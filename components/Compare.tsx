@@ -25,13 +25,13 @@ function Cell({ value, hero }: { value: string; hero: boolean }) {
     );
   if (value === "partial")
     return (
-      <span className="rounded-pill bg-amber-50 px-2 py-0.5 text-[11px] font-semibold text-amber-600">
+      <span className="rounded-full bg-amber-50 px-2 py-0.5 text-[11px] font-semibold text-amber-600">
         partial
       </span>
     );
   return (
     <span
-      className={`text-[13px] font-medium ${hero ? "text-white" : "text-ink-600"}`}
+      className={`text-sm font-medium ${hero ? "text-white" : "text-ink-600"}`}
     >
       {value}
     </span>
@@ -41,11 +41,11 @@ function Cell({ value, hero }: { value: string; hero: boolean }) {
 export function Compare() {
   const { columns, rows } = COMPARE;
   return (
-    <section id="compare" className="bg-white py-24 sm:py-32">
+    <section id="compare" className="section-padding bg-white">
       <div className="mx-auto max-w-6xl px-5">
         <Reveal className="mx-auto max-w-2xl text-center">
           <p className="eyebrow text-cobalt-600">How we compare</p>
-          <h2 className="mt-4 font-display text-[clamp(28px,4vw,48px)] font-extrabold tracking-tight text-ink-900">
+          <h2 className="mt-4 font-display text-[clamp(30px,4vw,48px)] font-extrabold leading-[1.05] tracking-tight text-ink-900">
             The photo-first one. Without the traps.
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-ink-500">
@@ -56,7 +56,7 @@ export function Compare() {
 
         {/* Win counter */}
         <Reveal className="mt-10 flex justify-center">
-          <div className="inline-flex items-center gap-2 rounded-pill bg-cobalt-50 px-4 py-2 text-sm font-semibold text-cobalt-700">
+          <div className="inline-flex items-center gap-2 rounded-full bg-cobalt-50 px-4 py-2 text-sm font-semibold text-cobalt-700">
             <Icon.check width={16} className="text-cobalt-600" />
             SnapEnvoice leads in 5 of 6 categories
           </div>
@@ -85,7 +85,7 @@ export function Compare() {
                           {c}
                         </span>
                         {hero && (
-                          <span className="mt-1 block text-[10px] font-semibold uppercase tracking-wider text-amber-300">
+                          <span className="mt-1 block text-[11px] font-semibold uppercase tracking-wider text-amber-300">
                             That&apos;s us
                           </span>
                         )}

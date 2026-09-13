@@ -19,12 +19,12 @@ const NEW = [
 
 export function Problem() {
   return (
-    <section className="relative bg-white py-24 sm:py-32">
+    <section className="section-padding relative bg-white">
       <div className="bg-grid pointer-events-none absolute inset-0 opacity-25" />
       <div className="relative mx-auto max-w-6xl px-5">
         <Reveal className="mx-auto max-w-2xl text-center">
           <p className="eyebrow text-cobalt-600">Why it matters</p>
-          <h2 className="mt-4 font-display text-[clamp(28px,4vw,48px)] font-extrabold tracking-tight text-ink-900">
+          <h2 className="mt-4 font-display text-[clamp(30px,4vw,48px)] font-extrabold leading-[1.05] tracking-tight text-ink-900">
             Stop texting your prices.
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-ink-500">
@@ -34,22 +34,22 @@ export function Problem() {
           </p>
         </Reveal>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-2">
+        <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2">
           {/* Old way */}
           <Reveal>
             <div className="group h-full rounded-card-lg border border-ink-200 bg-ink-50 p-8 transition-shadow duration-500 hover:shadow-card">
-              <div className="mb-6 inline-flex items-center gap-2 rounded-pill bg-danger-soft px-3.5 py-1.5 text-sm font-semibold text-danger">
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-danger-soft px-3.5 py-1.5 text-sm font-semibold text-danger">
                 <Icon.x width={15} /> The old way
               </div>
               <ul className="space-y-4">
                 {OLD.map((t, i) => (
                   <Reveal key={t} delay={0.06 * i} y={12}>
-                    <li className="flex items-start gap-3 text-ink-500">
+                    <li className="flex items-start gap-2 text-ink-500">
                       <Icon.x
                         width={17}
                         className="mt-0.5 flex-none text-danger/60"
                       />
-                      <span className="text-[15px] leading-snug line-through decoration-danger/30">
+                      <span className="text-base leading-snug line-through decoration-danger/30">
                         {t}
                       </span>
                     </li>
@@ -62,18 +62,18 @@ export function Problem() {
           {/* SnapEnvoice way */}
           <Reveal delay={0.08}>
             <div className="relative h-full overflow-hidden rounded-card-lg border border-cobalt-300/50 bg-gradient-to-br from-cobalt-600 via-cobalt-700 to-cobalt-800 p-8 text-white shadow-glow transition-shadow duration-500 hover:shadow-glow-lg">
-              <div className="mb-6 inline-flex items-center gap-2 rounded-pill bg-white/15 px-3.5 py-1.5 text-sm font-semibold backdrop-blur-sm">
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/15 px-3.5 py-1.5 text-sm font-semibold backdrop-blur-sm">
                 <Icon.check width={15} /> The SnapEnvoice way
               </div>
               <ul className="space-y-4">
                 {NEW.map((t, i) => (
                   <Reveal key={t} delay={0.08 + 0.06 * i} y={12}>
-                    <li className="flex items-start gap-3">
+                    <li className="flex items-start gap-2">
                       <Icon.check
                         width={17}
                         className="mt-0.5 flex-none text-amber-400"
                       />
-                      <span className="text-[15px] font-medium leading-snug">
+                      <span className="text-base font-medium leading-snug">
                         {t}
                       </span>
                     </li>

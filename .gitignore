@@ -32,3 +32,13 @@ next-env.d.ts
 
 # vercel
 .vercel
+
+# agent skill installs (npx skills add) — regenerate with `npx skills experimental_install`
+/.agents/
+/.claude/skills/
+/agent/
+/data/skills/
+skills-lock.json
+
+# vendored design reference clone (rohitg00/awesome-claude-design) — has its own .git
+/design-vault/

@@ -58,7 +58,7 @@ export function PaidFaster() {
   }, [reduce]);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden bg-ink-950 py-28 text-white sm:py-36">
+    <section ref={sectionRef} className="section-padding relative overflow-hidden bg-ink-950 text-white">
       <div className="pointer-events-none absolute inset-0">
         <GradientBlob color="cobalt" size={600} className="left-[15%] top-0 opacity-50" />
         <GradientBlob color="amber" size={450} className="bottom-0 right-[5%] opacity-35" />
@@ -68,7 +68,7 @@ export function PaidFaster() {
       <div className="relative mx-auto max-w-6xl px-5">
         <Reveal className="mx-auto max-w-2xl text-center">
           <p className="eyebrow text-amber-400">Get paid faster</p>
-          <h2 className="mt-4 font-display text-[clamp(28px,4vw,48px)] font-extrabold tracking-tight">
+          <h2 className="mt-4 font-display text-[clamp(30px,4vw,48px)] font-extrabold leading-[1.05] tracking-tight">
             The polite payment chaser.
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-ink-300">
@@ -79,7 +79,7 @@ export function PaidFaster() {
         </Reveal>
 
         {/* Three phones with scroll-driven entrance */}
-        <div ref={phonesRef as React.RefObject<HTMLDivElement>} className="mt-14 flex items-end justify-center gap-2 sm:gap-6 lg:gap-8">
+        <div ref={phonesRef as React.RefObject<HTMLDivElement>} className="mt-14 flex items-end justify-center gap-2 sm:gap-6">
           <Reveal delay={0.05}>
             <div className="hidden sm:block">
               <PhoneShot
@@ -137,7 +137,7 @@ export function PaidFaster() {
         </div>
 
         {/* Numbered points */}
-        <div className="mt-14 grid gap-6 sm:grid-cols-3 sm:gap-8">
+        <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-3">
           {POINTS.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.1} className="text-center">
               <div className="mx-auto mb-3 flex h-9 w-9 items-center justify-center rounded-full bg-amber-500/15 font-display text-sm font-bold text-amber-400 transition-transform duration-500 ease-premium hover:scale-110">

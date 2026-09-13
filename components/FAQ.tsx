@@ -9,11 +9,11 @@ export function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="bg-ink-50 py-24 sm:py-32">
+    <section id="faq" className="section-padding bg-ink-50">
       <div className="mx-auto max-w-3xl px-5">
         <Reveal className="text-center">
           <p className="eyebrow text-cobalt-600">Questions</p>
-          <h2 className="mt-4 font-display text-[clamp(28px,4vw,48px)] font-extrabold tracking-tight text-ink-900">
+          <h2 className="mt-4 font-display text-[clamp(30px,4vw,48px)] font-extrabold leading-[1.05] tracking-tight text-ink-900">
             Straight answers.
           </h2>
         </Reveal>
@@ -35,7 +35,7 @@ export function FAQ() {
                     className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
                     aria-expanded={isOpen}
                   >
-                    <span className="font-display text-[16px] font-bold text-ink-900">
+                    <span className="font-display text-base font-bold text-ink-900">
                       {item.q}
                     </span>
                     <span
@@ -67,7 +67,7 @@ export function FAQ() {
                         transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
                       >
                         <div className="border-t border-ink-100 px-6 pb-6 pt-4">
-                          <p className="text-[15px] leading-relaxed text-ink-600">
+                          <p className="text-base leading-relaxed text-ink-600">
                             {item.a}
                           </p>
                         </div>
