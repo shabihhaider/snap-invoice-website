@@ -83,16 +83,16 @@ export function PaidFaster() {
           <Reveal delay={0.05}>
             <div className="hidden sm:block">
               <PhoneShot
-                src="/app-screens/3-invoice-detail.webp"
-                alt="Invoice INV-0013 detail for $47.50, marked paid, with Share, Edit, Mark Paid and Preview PDF actions"
+                src="/app-screens/invoice-overdue-remind.webp"
+                alt="Invoice INV-0006 for $47,250.00 flagged Payment Overdue, eight days past due, with a red Remind button"
                 width={190}
                 className="-rotate-3 opacity-90 transition-transform duration-700 ease-premium hover:rotate-0 hover:opacity-100"
               />
             </div>
             <div className="sm:hidden">
               <PhoneShot
-                src="/app-screens/3-invoice-detail.webp"
-                alt="Invoice INV-0013 detail for $47.50, marked paid, with Share, Edit, Mark Paid and Preview PDF actions"
+                src="/app-screens/invoice-overdue-remind.webp"
+                alt="Invoice INV-0006 for $47,250.00 flagged Payment Overdue, eight days past due, with a red Remind button"
                 width={130}
                 className="-rotate-3 opacity-80"
               />
@@ -101,16 +101,16 @@ export function PaidFaster() {
           <Reveal delay={0.12}>
             <div className="hidden sm:block">
               <PhoneShot
-                src="/app-screens/7-automatic-reminders.webp"
-                alt="Automatic reminder settings: remind after 3, 7, 14 or 30 days with a Friendly, Firm or Final tone, and a confirmation that a payment reminder was sent"
+                src="/app-screens/reminder-tone-picker.webp"
+                alt="Choose Reminder Tone sheet offering Friendly, Firm and Final Notice, with Final Notice suggested"
                 width={240}
                 className="z-10 shadow-glow"
               />
             </div>
             <div className="sm:hidden">
               <PhoneShot
-                src="/app-screens/7-automatic-reminders.webp"
-                alt="Automatic reminder settings: remind after 3, 7, 14 or 30 days with a Friendly, Firm or Final tone, and a confirmation that a payment reminder was sent"
+                src="/app-screens/reminder-tone-picker.webp"
+                alt="Choose Reminder Tone sheet offering Friendly, Firm and Final Notice, with Final Notice suggested"
                 width={170}
                 className="z-10 shadow-glow"
               />
@@ -119,16 +119,16 @@ export function PaidFaster() {
           <Reveal delay={0.2}>
             <div className="hidden sm:block">
               <PhoneShot
-                src="/app-screens/4-invoice-history.webp"
-                alt="Invoice history filtered by All, Outstanding, Overdue and Paid, listing paid, sent and overdue invoices with their amounts"
+                src="/app-screens/reminders-timeline.webp"
+                alt="Reminders timeline on invoice INV-0006 listing five sent reminders with tone and date, above a Send Reminder button"
                 width={190}
                 className="rotate-3 opacity-90 transition-transform duration-700 ease-premium hover:rotate-0 hover:opacity-100"
               />
             </div>
             <div className="sm:hidden">
               <PhoneShot
-                src="/app-screens/4-invoice-history.webp"
-                alt="Invoice history filtered by All, Outstanding, Overdue and Paid, listing paid, sent and overdue invoices with their amounts"
+                src="/app-screens/reminders-timeline.webp"
+                alt="Reminders timeline on invoice INV-0006 listing five sent reminders with tone and date, above a Send Reminder button"
                 width={130}
                 className="rotate-3 opacity-80"
               />

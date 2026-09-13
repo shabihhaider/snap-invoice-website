@@ -220,8 +220,8 @@ export function Hero() {
             <Tilt intensity={10}>
               <div className="[transform:rotateY(-8deg)_rotateX(3deg)]">
                 <PhoneShot
-                  src="/app-screens/1-dashboard-revenue.webp"
-                  alt="SnapEnvoice dashboard showing $74,817.50 collected this month, 11 total invoices, 4 estimates and recent invoice activity"
+                  src="/app-screens/dashboard-revenue.webp"
+                  alt="SnapEnvoice dashboard showing $47,250.00 this month, 6 total invoices, 4 awaiting payment, and one overdue invoice flagged in red"
                   width={300}
                   priority
                   className="shadow-phone"
