@@ -14,39 +14,35 @@ gsap.registerPlugin(ScrollTrigger);
  * Snappy — the SnapEnvoice mascot. Transparent 3D cut-outs, so no device
  * frame, no card and no drop shadow: the figures sit straight on the band.
  *
- * The three sources do not share an aspect ratio (01 is landscape, 02 and 03
- * are portrait), so every cell is locked to `aspect-[4/5]` and the art is
- * fitted with `object-contain object-bottom`. Identical cells, and because all
- * three renders carry the same ~4% of empty space below the boots, the figures
- * land on one shared ground line.
+ * All three sources are 820x1230 portrait canvases whose figure occupies
+ * 87-95% of the height, so every cell is locked to `aspect-[4/5]` and the art
+ * is fitted with `object-contain object-bottom`. Identical cells, one shared
+ * ground line, and no per-image scaling.
  *
- * `zoom` then scales the landscape frame up from its bottom-left corner so the
- * figure reads at the same weight as the two portraits instead of half their
- * size. Bottom-left origin is deliberate: the mascot is framed hard left in the
- * source, so it stays fully inside the cell and only the car runs out of frame
- * on the right.
+ * 01 was originally a landscape render with the car beside the mascot. Fitting
+ * that into a portrait cell required scaling it up from the bottom-left, which
+ * pushed the car through the cell's clip edge and read as a sliced-off box. The
+ * source is now cropped to the mascot alone: the phone he is holding shows the
+ * car in a camera viewfinder, so the step still reads as photographing the job.
  */
 const SHOTS = [
   {
     src: "/mascot/step-snap.webp",
-    alt: "Snappy, the SnapEnvoice mascot, crouching to photograph a blue car on his phone",
-    width: 1100,
-    height: 733,
-    zoom: "origin-bottom-left scale-150",
+    alt: "Snappy, the SnapEnvoice mascot, framing a car in his phone camera to photograph the job",
+    width: 820,
+    height: 1230,
   },
   {
     src: "/mascot/step-price.webp",
     alt: "Snappy sitting on a toolbox, tapping the invoice line items into his phone",
     width: 820,
     height: 1230,
-    zoom: "",
   },
   {
     src: "/mascot/step-send.webp",
     alt: "Snappy pointing at his phone as an invoice card sends",
     width: 820,
     height: 1230,
-    zoom: "",
   },
 ] as const;
 
@@ -124,8 +120,10 @@ export function HowItWorks() {
             <Reveal key={step.key} delay={i * 0.12} className="relative z-10">
               <div className="flex flex-col items-center text-center">
                 {/* Fixed-aspect illustration cell — identical across all three
-                    columns whatever the source ratio. */}
-                <div className="relative mx-auto aspect-[4/5] w-full max-w-xs overflow-hidden md:max-w-none">
+                    columns. No overflow clip: every source is a portrait canvas
+                    that object-contain fits entirely, so nothing can be sliced
+                    at the cell edge. */}
+                <div className="relative mx-auto aspect-[4/5] w-full max-w-xs md:max-w-none">
                   <div
                     aria-hidden
                     className="pointer-events-none absolute inset-0"
@@ -138,7 +136,7 @@ export function HowItWorks() {
                     height={SHOTS[i].height}
                     loading="lazy"
                     decoding="async"
-                    className={`relative h-full w-full object-contain object-bottom ${SHOTS[i].zoom}`}
+                    className="relative h-full w-full object-contain object-bottom"
                   />
                 </div>
 
