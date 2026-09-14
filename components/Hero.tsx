@@ -4,8 +4,7 @@ import { useEffect, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { PhoneShot } from "./PhoneShot";
-import { Tilt } from "./Tilt";
+import Image from "next/image";
 import { Icon } from "./Icons";
 import { AppStoreBadge } from "./AppStoreBadge";
 import { GradientBlob } from "./GradientBlob";
@@ -198,17 +197,17 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* ── Right: floating phone ── */}
+        {/* ── Right: stacked App Store cards ── */}
         <motion.div
           ref={phoneRef}
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.15, ease: [0.21, 0.6, 0.35, 1] }}
-          className="relative mx-auto flex justify-center [perspective:1200px]"
+          className="relative mx-auto flex justify-center"
         >
-          {/* Glow behind phone */}
+          {/* Glow behind the stack */}
           <div
-            className="pointer-events-none absolute left-1/2 top-[10%] h-[400px] w-[400px] -translate-x-1/2 rounded-full"
+            className="pointer-events-none absolute left-1/2 top-[10%] h-[460px] w-[460px] -translate-x-1/2 rounded-full"
             style={{
               background:
                 "radial-gradient(circle, rgba(37,99,235,.3), transparent 70%)",
@@ -216,43 +215,52 @@ export function Hero() {
             }}
           />
 
-          <div style={{ animation: reduce ? "none" : "hero-floaty 8s ease-in-out infinite" }}>
-            <Tilt intensity={10}>
-              <div className="[transform:rotateY(-8deg)_rotateX(3deg)]">
-                <PhoneShot
-                  src="/app-screens/dashboard-revenue.webp"
-                  alt="SnapEnvoice dashboard showing $47,250.00 this month, 6 total invoices, 4 awaiting payment, and one overdue invoice flagged in red"
-                  width={300}
-                  priority
-                  className="shadow-phone"
-                />
-              </div>
-            </Tilt>
-
-            {/* PAID chip */}
-            <div
-              className="absolute -left-4 top-16 rounded-[14px] border border-[rgba(74,222,128,0.3)] bg-ink-950/90 px-4 py-2.5 shadow-[0_12px_32px_rgba(0,0,0,0.5)] backdrop-blur-md sm:-left-14 lg:-left-24"
-              style={{ animation: reduce ? "none" : "hero-floaty-tilt 6s ease-in-out infinite" }}
-            >
-              <div className="text-[11px] font-bold tracking-[0.08em] text-[#4ADE80]">
-                PAID ✓
-              </div>
-              <div className="font-display text-[16px] font-extrabold text-white">
-                $47,250.00
-              </div>
+          {/*
+           * Two App Store cards, the smaller breaking out of the larger one's
+           * bottom-right corner.
+           *
+           * The container carries the aspect of the WHOLE composition
+           * (543x920 in the reference), and both cards are positioned as
+           * percentages inside it. That keeps the overhang from spilling past
+           * the column at any width -- an absolutely positioned card with
+           * `left:79%; width:56%` would reach 135% and push the page sideways
+           * on small screens.
+           */}
+          {/* Explicit widths, not `w-full`: this sits inside a shrink-wrapping
+              flex/motion parent where a percentage width resolves to 0 and the
+              whole stack collapses -- the same trap PhoneShot documents. */}
+          <div
+            className="relative mx-auto aspect-[543/920] w-[300px] max-w-full sm:w-[400px] lg:w-[480px]"
+            style={{ animation: reduce ? "none" : "hero-floaty 8s ease-in-out infinite" }}
+          >
+            {/* Back card — 73.7% of the composition, flush top-left */}
+            <div className="absolute left-0 top-0 w-[73.7%]">
+              <Image
+                src="/app-screenshots/1-dashboard-revenue.webp"
+                alt="See Your Revenue Clearly — the SnapEnvoice dashboard tracking income, outstanding and growth in one place"
+                width={900}
+                height={1947}
+                sizes="(max-width: 639px) 250px, (max-width: 1023px) 317px, 383px"
+                quality={88}
+                priority
+                className="h-auto w-full rounded-[22px] shadow-[0_30px_60px_rgba(0,0,0,0.45)]"
+              />
             </div>
 
-            {/* REMINDER chip */}
-            <div
-              className="absolute -right-2 bottom-28 rounded-[14px] border border-amber-500/30 bg-ink-950/90 px-4 py-2.5 shadow-[0_12px_32px_rgba(0,0,0,0.5)] backdrop-blur-md sm:-right-12 lg:-right-24"
-              style={{ animation: reduce ? "none" : "hero-floaty 5.5s ease-in-out infinite" }}
-            >
-              <div className="text-[11px] font-bold tracking-[0.08em] text-amber-500">
-                ⚡ REMINDER SENT
-              </div>
-              <div className="text-[12px] font-semibold text-ink-400">
-                INV-0006 · friendly tone
-              </div>
+            {/* Front card — overlaps the back card's lower-right, and extends
+                past both its right and bottom edges. The dark ring separates
+                the two where they overlap, since both are the same blue. */}
+            <div className="absolute left-[58.6%] top-[47.6%] w-[41.4%]">
+              <Image
+                src="/app-screenshots/3-invoice-detail.webp"
+                alt="Track Every Payment — an invoice detail view showing what is paid and what is still due"
+                width={900}
+                height={1947}
+                sizes="(max-width: 639px) 141px, (max-width: 1023px) 178px, 215px"
+                quality={88}
+                priority
+                className="h-auto w-full rounded-[16px] ring-1 ring-ink-950/70 shadow-[0_24px_50px_rgba(0,0,0,0.55)]"
+              />
             </div>
           </div>
         </motion.div>
