@@ -226,11 +226,19 @@ export function Hero() {
            * `left:79%; width:56%` would reach 135% and push the page sideways
            * on small screens.
            */}
-          {/* Explicit widths, not `w-full`: this sits inside a shrink-wrapping
-              flex/motion parent where a percentage width resolves to 0 and the
-              whole stack collapses -- the same trap PhoneShot documents. */}
+          {/*
+           * Explicit sizes, never `w-full`: this sits inside a shrink-wrapping
+           * flex/motion parent where a percentage width resolves to 0 and the
+           * whole stack collapses -- the same trap PhoneShot documents.
+           *
+           * From `lg` the size is driven by viewport HEIGHT, not width. The
+           * composition is tall (543:920), so a width-derived 480px card came
+           * out 813px high and ran past the fold. The hero reserves 128px top
+           * and 80px bottom, so capping at 72svh keeps the whole stack inside
+           * the first screen while still growing on taller displays.
+           */}
           <div
-            className="relative mx-auto aspect-[543/920] w-[300px] max-w-full sm:w-[400px] lg:w-[480px]"
+            className="relative mx-auto aspect-[543/920] w-[280px] max-w-full sm:w-[340px] lg:h-[min(72svh,700px)] lg:w-auto"
             style={{ animation: reduce ? "none" : "hero-floaty 8s ease-in-out infinite" }}
           >
             {/* Back card — 73.7% of the composition, flush top-left */}
