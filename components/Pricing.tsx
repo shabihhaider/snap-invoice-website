@@ -36,7 +36,7 @@ export function Pricing() {
           <div className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.04] p-1">
             <button
               onClick={() => setAnnual(false)}
-              className={`rounded-full px-6 py-2 text-sm font-semibold transition-all duration-500 ease-premium ${
+              className={`min-h-11 rounded-full px-6 text-sm font-semibold transition-all duration-500 ease-premium ${
                 !annual
                   ? "bg-cobalt-600 text-white shadow-fab"
                   : "text-ink-400 hover:text-white"
@@ -46,7 +46,7 @@ export function Pricing() {
             </button>
             <button
               onClick={() => setAnnual(true)}
-              className={`rounded-full px-6 py-2 text-sm font-semibold transition-all duration-500 ease-premium ${
+              className={`min-h-11 rounded-full px-6 text-sm font-semibold transition-all duration-500 ease-premium ${
                 annual
                   ? "bg-cobalt-600 text-white shadow-fab"
                   : "text-ink-400 hover:text-white"

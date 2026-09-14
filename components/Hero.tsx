@@ -76,6 +76,25 @@ export function Hero() {
     >
       {/* ── Ambient background ── */}
       <div className="pointer-events-none absolute inset-0">
+        {/* Floating brand-shape cluster — same full-bleed backdrop role as
+            FinalCta's jobsite plate, tuned down in opacity since this is an
+            abstract 3D render, not a photo: it needs to read as ambience
+            behind the copy, not compete with it. The shutter cluster (an
+            echo of the logomark) is weighted toward the phone-mockup side
+            via object-position so it doesn't sit under the headline. */}
+        <Image
+          src="/backgrounds/hero-shapes.webp"
+          alt=""
+          fill
+          sizes="100vw"
+          quality={85}
+          priority
+          className="object-cover object-[85%_78%] opacity-[0.10] mix-blend-screen lg:object-[62%_45%] lg:opacity-[0.20]"
+        />
+        {/* Scrim — same flat-tint move as FinalCta's jobsite plate, so the
+            shape cluster reads as ambience, never competes with the copy. */}
+        <div className="absolute inset-0 bg-ink-950/[0.75]" />
+
         {/* Masked grid */}
         <div className="hero-grid-masked absolute inset-0" />
 

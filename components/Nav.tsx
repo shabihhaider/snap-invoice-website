@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { Logo } from "./Logo";
 import { NAV_LINKS } from "@/lib/content";
 import { Icon } from "./Icons";
+
+const MOBILE_MENU_ID = "nav-mobile-menu";
 
 /**
  * Premium floating island nav with progressive glass backdrop,
@@ -13,6 +15,7 @@ export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
   /* Progressive glass on scroll */
   useEffect(() => {
@@ -49,6 +52,18 @@ export function Nav() {
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
+  /* Escape closes the mobile sheet and returns focus to the toggle */
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setOpen(false);
+      toggleRef.current?.focus();
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
   const closeMenu = useCallback(() => setOpen(false), []);
 
   return (
@@ -60,7 +75,11 @@ export function Nav() {
             : "border-white/5 bg-white/[0.03] backdrop-blur-xl"
         }`}
       >
-        <a href="#top" aria-label="SnapEnvoice home" className="shrink-0">
+        <a
+          href="#top"
+          aria-label="SnapEnvoice home"
+          className="inline-flex min-h-11 shrink-0 items-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-600 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+        >
           <Logo invert />
         </a>
 
@@ -73,7 +92,7 @@ export function Nav() {
               <a
                 key={l.href}
                 href={l.href}
-                className={`relative rounded-full px-3.5 py-1.5 text-sm font-medium transition-all duration-300 ${
+                className={`relative inline-flex min-h-11 items-center rounded-full px-3.5 text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-600 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 ${
                   isActive
                     ? "text-white"
                     : "text-ink-400 hover:text-ink-200"
@@ -92,8 +111,11 @@ export function Nav() {
         </div>
 
         <div className="flex items-center gap-2">
-          <a href="#get-the-app" className="group hidden sm:inline-flex">
-            <span className="btn-primary gap-2 py-2 pl-5 pr-1.5 text-sm">
+          <a
+            href="#get-the-app"
+            className="group hidden rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-600 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 sm:inline-flex"
+          >
+            <span className="btn-primary min-h-11 gap-2 py-2 pl-5 pr-1.5 text-sm">
               Get the app
               <span className="btn-orb">
                 <Icon.arrow width={14} />
@@ -103,10 +125,13 @@ export function Nav() {
 
           {/* Hamburger → X morph */}
           <button
+            ref={toggleRef}
+            type="button"
             onClick={() => setOpen((v) => !v)}
             aria-label="Menu"
             aria-expanded={open}
-            className="relative flex h-10 w-10 items-center justify-center text-white md:hidden"
+            aria-controls={MOBILE_MENU_ID}
+            className="relative flex h-11 w-11 items-center justify-center rounded-full text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-600 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 md:hidden"
           >
             <span
               className={`absolute h-[1.5px] w-5 bg-current transition-all duration-500 ease-premium ${
@@ -124,6 +149,8 @@ export function Nav() {
 
       {/* Mobile sheet */}
       <div
+        id={MOBILE_MENU_ID}
+        aria-hidden={!open}
         className={`mx-auto mt-2 max-w-4xl overflow-hidden rounded-3xl border border-white/10 bg-ink-950/95 backdrop-blur-2xl transition-all duration-500 ease-premium md:hidden ${
           open
             ? "max-h-[420px] opacity-100"
@@ -136,8 +163,9 @@ export function Nav() {
               key={l.href}
               href={l.href}
               onClick={closeMenu}
+              tabIndex={open ? undefined : -1}
               style={{ transitionDelay: open ? `${60 + i * 50}ms` : "0ms" }}
-              className={`rounded-xl px-4 py-3 text-base font-medium text-ink-200 transition-all duration-500 ease-premium hover:bg-white/5 hover:text-white ${
+              className={`flex min-h-11 items-center rounded-2xl px-4 py-3 text-base font-medium text-ink-200 transition-all duration-500 ease-premium hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-600 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950 ${
                 open
                   ? "translate-y-0 opacity-100"
                   : "translate-y-4 opacity-0"
@@ -149,7 +177,8 @@ export function Nav() {
           <a
             href="#get-the-app"
             onClick={closeMenu}
-            className="btn-primary group mt-3 gap-2 py-3 text-sm"
+            tabIndex={open ? undefined : -1}
+            className="btn-primary group mt-3 min-h-11 gap-2 py-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-600 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
           >
             Get the app
             <span className="btn-orb">

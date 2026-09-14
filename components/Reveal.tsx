@@ -24,17 +24,18 @@ export function Reveal({
   once = true,
 }: RevealProps) {
   const reduce = useReducedMotion();
+  // `initial` and `whileInView` always carry the same keys (y, filter), just
+  // zeroed when `reduce` is true, rather than omitting them. useReducedMotion()
+  // can flip from false -> true after mount (its value settles asynchronously
+  // via the matchMedia listener), and if `initial` had already committed the
+  // non-reduce shape (y/blur) while `whileInView`'s target then dropped those
+  // keys, framer-motion never animates them back -- the element gets stuck
+  // permanently blurred/offset even though opacity reaches 1.
   return (
     <motion.div
       className={className}
-      initial={
-        reduce ? { opacity: 0 } : { opacity: 0, y, filter: "blur(8px)" }
-      }
-      whileInView={
-        reduce
-          ? { opacity: 1 }
-          : { opacity: 1, y: 0, filter: "blur(0px)" }
-      }
+      initial={{ opacity: 0, y: reduce ? 0 : y, filter: reduce ? "blur(0px)" : "blur(8px)" }}
+      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       viewport={{ once, margin: "-80px" }}
       transition={{ duration: 0.8, delay, ease: [0.32, 0.72, 0, 1] }}
     >
