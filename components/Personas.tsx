@@ -4,10 +4,10 @@ import { Icon } from "./Icons";
 
 /** Map persona trades to their background illustrations. */
 const TRADE_ILLUSTRATIONS: Record<string, string> = {
-  "Car Detailing": "/illustrations/trade-detailer.png",
-  "Landscaping": "/illustrations/trade-landscaping.png",
-  "Handyman": "/illustrations/trade-handyman.png",
-  "Pressure Washing": "/illustrations/trade-pressure-washer.png",
+  "Car Detailing": "/illustrations/trade-detailer.webp",
+  "Landscaping": "/illustrations/trade-landscaping.webp",
+  "Handyman": "/illustrations/trade-handyman.webp",
+  "Pressure Washing": "/illustrations/trade-pressure-washer.webp",
 };
 
 /** Map persona trades to their icons. */

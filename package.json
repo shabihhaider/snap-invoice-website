@@ -2,12 +2,13 @@
   "name": "snapenvoice-website",
   "version": "1.0.0",
   "private": true,
-  "description": "SnapEnvoice pre-launch waitlist landing page",
+  "description": "SnapEnvoice marketing site for the live iOS app",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "images": "node scripts/optimize-images.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -24,6 +25,7 @@
     "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.40",
+    "sharp": "^0.34.2",
     "sharp-cli": "^5.2.0",
     "tailwindcss": "^3.4.7",
     "typescript": "^5.5.4"

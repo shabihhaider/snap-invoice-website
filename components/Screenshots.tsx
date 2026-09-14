@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import {
+  animate,
   motion,
   useMotionValue,
   useTransform,
@@ -41,10 +42,15 @@ const SHOWCASE = [
   },
 ] as const;
 
+/** Gap between cards, matching `gap-4` on the rail. */
+const CARD_GAP = 16;
+
 export function Screenshots() {
   const containerRef = useRef<HTMLDivElement>(null);
   const innerRef = useRef<HTMLDivElement>(null);
   const [dragBounds, setDragBounds] = useState({ left: 0, right: 0 });
+  const [atStart, setAtStart] = useState(true);
+  const [atEnd, setAtEnd] = useState(false);
   const reduce = useReducedMotion();
 
   /* Drag offset, so the left edge-fade only appears once the rail has actually
@@ -75,8 +81,36 @@ export function Screenshots() {
     return () => ro.disconnect();
   }, []);
 
+  /* Arrow enabled-state tracks the live drag offset, so dragging by hand and
+     stepping with the arrows stay in sync. */
+  useEffect(() => {
+    const sync = (v: number) => {
+      setAtStart(v >= -1);
+      setAtEnd(v <= dragBounds.left + 1);
+    };
+    sync(x.get());
+    return x.on("change", sync);
+  }, [x, dragBounds.left]);
+
+  /* One card + gap per press, clamped to the same bounds the drag uses. */
+  function step(direction: 1 | -1) {
+    const card = innerRef.current?.children[0] as HTMLElement | undefined;
+    const delta = (card?.getBoundingClientRect().width ?? 250) + CARD_GAP;
+    const target = Math.min(
+      0,
+      Math.max(dragBounds.left, x.get() - direction * delta),
+    );
+    animate(x, target, {
+      duration: reduce ? 0 : 0.55,
+      ease: [0.32, 0.72, 0, 1],
+    });
+  }
+
   return (
-    <section id="screens" className="section-padding relative overflow-hidden bg-ink-50">
+    <section
+      id="screens"
+      className="section-padding relative overflow-hidden bg-ink-50"
+    >
       <div className="bg-grid pointer-events-none absolute inset-0 opacity-25" />
 
       <div className="relative mx-auto max-w-6xl px-5">
@@ -137,12 +171,28 @@ export function Screenshots() {
           className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-ink-50 to-transparent"
         />
         <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-ink-50 to-transparent" />
+
+        {/* Arrow controls — pointer devices only. Touch gets the drag gesture,
+            which beats hunting for a 44px target mid-swipe. */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 right-0 hidden items-center justify-between px-4 md:flex">
+          <ArrowButton
+            direction="prev"
+            onClick={() => step(-1)}
+            disabled={atStart}
+          />
+          <ArrowButton
+            direction="next"
+            onClick={() => step(1)}
+            disabled={atEnd}
+          />
+        </div>
       </div>
 
-      {/* Drag hint */}
+      {/* Hint — the affordance differs by input, so the copy does too */}
       <p className="mt-2 text-center text-sm font-medium text-ink-400">
         <span className="inline-flex items-center gap-2">
           <svg
+            aria-hidden
             width="16"
             height="16"
             viewBox="0 0 24 24"
@@ -154,9 +204,48 @@ export function Screenshots() {
           >
             <path d="M5 12h14M12 5l7 7-7 7" />
           </svg>
-          Drag to explore
+          <span className="md:hidden">Swipe to explore</span>
+          <span className="hidden md:inline">Drag, or use the arrows</span>
         </span>
       </p>
     </section>
+  );
+}
+
+function ArrowButton({
+  direction,
+  onClick,
+  disabled,
+}: {
+  direction: "prev" | "next";
+  onClick: () => void;
+  disabled: boolean;
+}) {
+  const isPrev = direction === "prev";
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      aria-label={isPrev ? "Previous screenshots" : "Next screenshots"}
+      className={`pointer-events-auto flex h-11 w-11 items-center justify-center rounded-full border border-ink-200 bg-white text-cobalt-600 shadow-raised transition-all duration-300 ease-premium hover:border-cobalt-300 hover:text-cobalt-700 hover:shadow-raised-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-600 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-50 disabled:pointer-events-none disabled:opacity-0 ${
+        isPrev ? "" : "ml-auto"
+      }`}
+    >
+      <svg
+        aria-hidden
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={isPrev ? "-ml-0.5 rotate-180" : "-mr-0.5"}
+      >
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      </svg>
+    </button>
   );
 }

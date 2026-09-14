@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { useReducedMotion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -129,13 +130,16 @@ export function HowItWorks() {
                     className="pointer-events-none absolute inset-0"
                     style={{ background: PEDESTAL }}
                   />
-                  <img
+                  <Image
                     src={SHOTS[i].src}
                     alt={SHOTS[i].alt}
                     width={SHOTS[i].width}
                     height={SHOTS[i].height}
+                    /* Cell is ~320px at mobile, ~344px at desktop. Without
+                       `sizes` the full 820px source ships for a 344px render. */
+                    sizes="(max-width: 767px) 320px, (max-width: 1023px) 240px, 350px"
+                    quality={82}
                     loading="lazy"
-                    decoding="async"
                     className="relative h-full w-full object-contain object-bottom"
                   />
                 </div>
