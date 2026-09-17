@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { useReducedMotion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
@@ -19,12 +19,10 @@ const TICKER_LINES = [
 ];
 
 const STATS = [
-  { value: "60s", label: "to build an invoice" },
-  { value: "3\u00d7", label: "faster payments*" },
+  { value: "<60s", label: "to build an invoice" },
+  { value: "10", label: "job photos, built in" },
   { value: "$0", label: "to get started" },
 ];
-
-const ease = [0.32, 0.72, 0, 1] as const;
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -125,25 +123,21 @@ export function Hero() {
         {/* ── Left: copy ── */}
         <div ref={contentRef}>
           {/* Eyebrow */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease }}
+          <div
             className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/[0.06] px-3.5 py-[7px] text-[12px] font-bold tracking-[0.06em] text-amber-500"
+            style={{ animation: "hero-fade-up 0.6s cubic-bezier(0.32,0.72,0,1) both" }}
           >
             <span
               className="h-[6px] w-[6px] rounded-full bg-amber-500"
               style={{ animation: "hero-pulse-dot 2s infinite" }}
             />
             INVOICING FOR THE TRADES
-          </motion.div>
+          </div>
 
           {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.05, ease }}
+          <h1
             className="mt-6 font-display text-[clamp(36px,5.5vw,60px)] font-extrabold leading-[1.02] tracking-[-0.025em] text-white"
+            style={{ animation: "hero-fade-up 0.8s cubic-bezier(0.32,0.72,0,1) 0.05s both" }}
           >
             Snap the job.
             <br />
@@ -155,27 +149,23 @@ export function Hero() {
                 <span>{TICKER_LINES[0]}</span>
               </span>
             </span>
-          </motion.h1>
+          </h1>
 
           {/* Subhead */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.12, ease }}
+          <p
             className="mt-6 max-w-[460px] text-lg leading-[1.7] text-ink-300"
+            style={{ animation: "hero-fade-up 0.7s cubic-bezier(0.32,0.72,0,1) 0.12s both" }}
           >
             The invoicing app that keeps up with your day. Photo proof on every
             invoice, prices in seconds, and smart reminders that chase
             payments&nbsp;&mdash; so you don&apos;t have to.
-          </motion.p>
+          </p>
 
           {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2, ease }}
+          <div
             id="get-the-app"
             className="mt-8 scroll-mt-28"
+            style={{ animation: "hero-fade-up 0.7s cubic-bezier(0.32,0.72,0,1) 0.2s both" }}
           >
             <div className="flex flex-wrap items-center gap-4">
               <AppStoreBadge />
@@ -186,14 +176,12 @@ export function Hero() {
                 Android coming soon.
               </p>
             </div>
-          </motion.div>
+          </div>
 
           {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.35 }}
+          <div
             className="mt-10 grid grid-cols-3 gap-4 sm:flex sm:gap-10"
+            style={{ animation: "hero-fade-in 0.8s ease 0.35s both" }}
           >
             {STATS.map((s, i) => (
               <div key={s.value} className="flex gap-4 sm:gap-10">
@@ -207,22 +195,20 @@ export function Hero() {
                   <div className="font-display text-2xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-3xl sm:leading-[1.05]">
                     {s.value}
                   </div>
-                  <div className="text-[11px] font-semibold leading-tight text-ink-500 sm:text-sm sm:leading-tight">
+                  <div className="text-[11px] font-semibold leading-tight text-ink-400 sm:text-sm sm:leading-tight">
                     {s.label}
                   </div>
                 </div>
               </div>
             ))}
-          </motion.div>
+          </div>
         </div>
 
         {/* ── Right: stacked App Store cards ── */}
-        <motion.div
+        <div
           ref={phoneRef}
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.15, ease: [0.21, 0.6, 0.35, 1] }}
           className="relative mx-auto flex justify-center"
+          style={{ animation: "hero-fade-up-lg 1s cubic-bezier(0.21,0.6,0.35,1) 0.15s both" }}
         >
           {/* Glow behind the stack */}
           <div
@@ -267,7 +253,7 @@ export function Hero() {
                 alt="See Your Revenue Clearly — the SnapEnvoice dashboard tracking income, outstanding and growth in one place"
                 width={900}
                 height={1947}
-                sizes="(max-width: 639px) 250px, (max-width: 1023px) 317px, 383px"
+                sizes="(max-width: 639px) 207px, (max-width: 1023px) 251px, 262px"
                 quality={88}
                 priority
                 className="h-auto w-full rounded-[22px] shadow-[0_30px_60px_rgba(0,0,0,0.45)]"
@@ -283,33 +269,31 @@ export function Hero() {
                 alt="Track Every Payment — an invoice detail view showing what is paid and what is still due"
                 width={900}
                 height={1947}
-                sizes="(max-width: 639px) 141px, (max-width: 1023px) 178px, 215px"
+                sizes="(max-width: 639px) 116px, (max-width: 1023px) 141px, 147px"
                 quality={88}
                 priority
                 className="h-auto w-full rounded-[16px] ring-1 ring-ink-950/70 shadow-[0_24px_50px_rgba(0,0,0,0.55)]"
               />
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
 
       {/* Scroll hint */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.2 }}
+      <div
         className="relative mt-12 flex justify-center lg:mt-16"
+        style={{ animation: "hero-fade-in 1s ease 1.2s both" }}
       >
         <a
           href="#how"
-          className="group flex flex-col items-center gap-2 text-xs text-ink-500 transition-colors hover:text-ink-300"
+          className="group flex flex-col items-center gap-2 text-xs text-ink-400 transition-colors hover:text-ink-300"
         >
           See how it works
           <span className="flex h-8 w-5 items-start justify-center rounded-full border border-ink-700 p-1">
             <span className="h-1.5 w-1 animate-float rounded-full bg-ink-500 transition-colors group-hover:bg-amber-500" />
           </span>
         </a>
-      </motion.div>
+      </div>
     </section>
   );
 }

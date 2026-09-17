@@ -33,6 +33,10 @@ const config: Config = {
           400: "#FBBF24",
           500: "#F59E0B",
           600: "#D97706",
+          /* WCAG AA text color for amber-on-light contexts: amber-600 only
+             clears 3.0-3.2:1 against white/ink-50 (large-text/UI only) —
+             not enough for body-size text. amber-700 clears 4.8:1. */
+          700: "#B45309",
         },
         ink: {
           0: "#FFFFFF",
@@ -51,7 +55,10 @@ const config: Config = {
           950: "#0A0F1E",
         },
         success: { soft: "#ECFDF5", DEFAULT: "#059669", bright: "#10B981" },
-        danger: { soft: "#FEF2F2", DEFAULT: "#DC2626" },
+        /* `strong` is for text set directly on `danger-soft` — DEFAULT only
+           clears 4.41:1 there (just under the 4.5:1 AA floor for
+           normal-size text); `strong` clears 5.91:1. */
+        danger: { soft: "#FEF2F2", DEFAULT: "#DC2626", strong: "#B91C1C" },
       },
       fontFamily: {
         display: ["var(--font-manrope)", "system-ui", "sans-serif"],

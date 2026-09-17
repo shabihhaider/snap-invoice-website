@@ -13,9 +13,7 @@ import { Personas } from "@/components/Personas";
 import { FAQ } from "@/components/FAQ";
 import { FinalCta } from "@/components/FinalCta";
 import { Footer } from "@/components/Footer";
-import { FAQ as FAQ_ITEMS, BRAND } from "@/lib/content";
-
-const SITE_URL = "https://snapenvoice.app";
+import { FAQ as FAQ_ITEMS, BRAND, SITE_URL } from "@/lib/content";
 
 function StructuredData() {
   const json = {
@@ -26,7 +24,7 @@ function StructuredData() {
         "@id": `${SITE_URL}/#org`,
         name: "SnapEnvoice",
         url: SITE_URL,
-        logo: `${SITE_URL}/logos/app-icon-192.svg`,
+        logo: `${SITE_URL}/logos/app-icon-192.png`,
         slogan: BRAND.tagline,
       },
       {
@@ -53,11 +51,37 @@ function StructuredData() {
           `${SITE_URL}/app-screenshots/7-automatic-reminders.webp`,
         ],
         offers: {
-          "@type": "Offer",
-          price: "0",
+          "@type": "AggregateOffer",
           priceCurrency: "USD",
-          description:
-            "Free tier: 10 invoices + 10 estimates, lifetime. Pro: $12.99/month or $89.99/year with a 7-day free trial on annual.",
+          lowPrice: "0",
+          highPrice: String(BRAND.proAnnual),
+          offerCount: "3",
+          offers: [
+            {
+              "@type": "Offer",
+              name: "Free",
+              price: "0",
+              priceCurrency: "USD",
+              description:
+                "10 invoices and 10 estimates, free for the lifetime of the app. No card, no account.",
+            },
+            {
+              "@type": "Offer",
+              name: "Pro — Annual",
+              price: String(BRAND.proAnnual),
+              priceCurrency: "USD",
+              description:
+                "Unlimited invoices and estimates, brand-free PDFs, your logo on every PDF. 7-day free trial.",
+            },
+            {
+              "@type": "Offer",
+              name: "Pro — Monthly",
+              price: String(BRAND.proMonthly),
+              priceCurrency: "USD",
+              description:
+                "Unlimited invoices and estimates, brand-free PDFs, your logo on every PDF.",
+            },
+          ],
         },
         publisher: { "@id": `${SITE_URL}/#org` },
       },

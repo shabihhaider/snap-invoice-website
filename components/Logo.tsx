@@ -1,21 +1,27 @@
-/* eslint-disable @next/next/no-img-element */
+import Image from "next/image";
 
 export function Logo({
   className,
   wordmark = true,
   invert = false,
+  priority = false,
 }: {
   className?: string;
   wordmark?: boolean;
   invert?: boolean;
+  /** Only the header/nav instance (always in the initial viewport) should
+   *  preload eagerly — the footer instance is far below the fold. */
+  priority?: boolean;
 }) {
   return (
     <span className={`inline-flex items-center gap-2 ${className ?? ""}`}>
-      <img
-        src="/logos/logomark.svg"
+      <Image
+        src="/logos/logomark.webp"
         alt="SnapEnvoice logo"
         width={34}
         height={34}
+        priority={priority}
+        loading={priority ? undefined : "lazy"}
         className="h-9 w-9 rounded-[9px] shadow-sm"
       />
       {wordmark && (

@@ -11,7 +11,7 @@ const UPDATED = "August 8, 2026";
 
 export default function PrivacyPage() {
   return (
-    <main className="mx-auto max-w-3xl px-5 pb-24 pt-32 text-ink-200">
+    <main className="mx-auto max-w-2xl px-5 pb-24 pt-32 text-ink-200">
       <h1 className="font-display text-4xl font-extrabold tracking-tight text-white">
         SnapEnvoice Privacy Policy
       </h1>
@@ -90,7 +90,7 @@ export default function PrivacyPage() {
             never see your card details. The app uses{" "}
             <a
               href="https://www.revenuecat.com/privacy"
-              className="text-cobalt-400 underline"
+              className="text-cobalt-400 underline underline-offset-2 transition-colors hover:text-cobalt-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cobalt-400"
               rel="noopener noreferrer"
             >
               RevenueCat
@@ -131,7 +131,10 @@ export default function PrivacyPage() {
           <p className="mt-2">
             Material changes will be announced in the app&apos;s update notes and on this page.
             Questions:{" "}
-            <a href="mailto:snapenvoice@gmail.com" className="text-cobalt-400 underline">
+            <a
+              href="mailto:snapenvoice@gmail.com"
+              className="text-cobalt-400 underline underline-offset-2 transition-colors hover:text-cobalt-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cobalt-400"
+            >
               snapenvoice@gmail.com
             </a>
             .

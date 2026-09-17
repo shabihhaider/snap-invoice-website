@@ -8,7 +8,7 @@ import { GradientBlob } from "./GradientBlob";
 import { Icon } from "./Icons";
 
 const TRUST = [
-  { icon: "shield" as const, text: "No data collected" },
+  { icon: "shield" as const, text: "Your data stays on your phone" },
   { icon: "wifi-off" as const, text: "Works offline" },
   { icon: "user-x" as const, text: "No account needed" },
 ];

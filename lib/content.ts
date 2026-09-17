@@ -14,6 +14,10 @@ export const BRAND = {
   proMonthly: 12.99,
 };
 
+/** Canonical production origin — imported everywhere a URL is built
+ *  (layout metadata, JSON-LD, robots.ts, sitemap.ts) so it only lives here. */
+export const SITE_URL = "https://snapenvoice.app";
+
 /**
  * App Store link — feeds every store button on the site.
  * Update with the direct link once Apple review clears.
@@ -24,12 +28,25 @@ export const APP_STORE_URL =
 export const NAV_LINKS = [
   { label: "How it works", href: "#how" },
   { label: "Features", href: "#features" },
-  { label: "Compare", href: "#compare" },
+  { label: "Why us", href: "#compare" },
   { label: "Pricing", href: "#pricing" },
   { label: "FAQ", href: "#faq" },
 ];
 
-/** Trades that scroll in the marquee (belonging trigger). */
+/**
+ * Trades that scroll in the marquee (belonging trigger).
+ * The original 10 are the trades named elsewhere on the page (personas,
+ * copy). The additions below were researched for fit against the app's
+ * "photo proof of work" wedge before being added — not just assumed:
+ * movers, property maintenance, pest control, carpet cleaning, roofing and
+ * furniture repair all have well-documented before/after-photo practices
+ * (insurance claims, deposit disputes, dedicated software features); HVAC,
+ * plumbing and electrical are included as their own distinct trade
+ * communities (separate from "Handyman") on the strength of general
+ * liability-documentation practice, even though the dispute-photo evidence
+ * for them is thinner than for the others. Left out as weak/speculative
+ * fits: tow operators, tree service, window cleaners, locksmiths.
+ */
 export const TRADES = [
   "Car Detailing",
   "Landscaping",
@@ -41,6 +58,15 @@ export const TRADES = [
   "Cleaning",
   "Junk Removal",
   "Mobile Mechanics",
+  "Roofing",
+  "Movers",
+  "Pest Control",
+  "HVAC",
+  "Plumbing",
+  "Electrical",
+  "Property Maintenance",
+  "Carpet Cleaning",
+  "Furniture Repair",
 ];
 
 /** The 3-step hero flow. */
@@ -73,14 +99,14 @@ export const FEATURES = [
   {
     icon: "camera",
     title: "Camera-first invoicing",
-    body: "Up to 10 photos per job, labelled Before / After / Progress. No competitor leads with the camera — we start there.",
+    body: "Up to 10 photos per job, labelled Before / After / Progress — built into the invoice from the first tap, not bolted on after.",
     flash: true,
     span: "lg",
   },
   {
     icon: "shield",
     title: "Photo proof-of-work",
-    body: "Timestamped before/after photos embedded right in the PDF. Ends “you missed a spot” and “I never got it.” Disputes over.",
+    body: "Before/after photos embedded right in the PDF. Ends “you missed a spot” and “I never got it.” Disputes over.",
     flash: true,
     span: "md",
   },
@@ -111,7 +137,7 @@ export const FEATURES = [
   {
     icon: "bell",
     title: "Overdue reminders",
-    body: "See who owes you in red. Send a pre-written, polite reminder in one tap — you stay in control, always.",
+    body: "Overdue invoices flag themselves the moment they're late. One tap sends a pre-written, polite reminder — you stay in control, always.",
     span: "md",
   },
   {
@@ -122,47 +148,21 @@ export const FEATURES = [
   },
 ];
 
-/** Competitor comparison — real 2026 pricing (competitor-pricing-2026.md). */
-export const COMPARE = {
-  columns: ["SnapEnvoice", "Joist", "Invoice Simple", "Bookipi", "Invoice Fly"],
-  rows: [
-    {
-      label: "Starting price",
-      values: [
-        "Free → $12.99/mo",
-        "$8–$32/mo",
-        "from $6.99/mo",
-        "$9.99/mo",
-        "$8.99/week",
-      ],
-    },
-    {
-      label: "Free tier",
-      values: [
-        "10 invoices + 10 estimates, lifetime",
-        "~5 docs/mo",
-        "≈3 docs trial",
-        "3 invoices/mo",
-        "Limited trial",
-      ],
-    },
-    {
-      label: "Camera-first photo proof",
-      values: ["yes", "no", "no", "no", "no"],
-    },
-    {
-      label: "Works offline, no account",
-      values: ["yes", "no", "partial", "no", "no"],
-    },
-    {
-      label: "60-second send",
-      values: ["yes", "no", "no", "partial", "no"],
-    },
-    {
-      label: "No weekly-billing traps",
-      values: ["yes", "yes", "yes", "yes", "no"],
-    },
-  ],
+/**
+ * Brand manifesto — the belief behind the product, not a restatement of
+ * what it does. Deliberately NOT a feature list or a competitor table:
+ * PhotoProof and Features already cover the "what" (camera-first capture,
+ * embedded proof, the 60-second flow), and Pricing's own subhead already
+ * covers the "how much." This section's only job is the "why" — the one
+ * thing nothing else on the page says. Keep it short; if a claim here
+ * starts sounding like a feature or a price, it belongs in one of those
+ * sections instead, not here.
+ */
+export const WHY_DIFFERENT = {
+  eyebrow: "Why SnapEnvoice",
+  heading: "The job isn't done until there's proof.",
+  lead: "Every trade we build for already carries a camera — it's the phone in your pocket. We think the invoice should start there, not end with a photo bolted onto a paper form.",
+  closing: "So that's the whole bet: build the proof in from the first tap, and nobody has to relitigate the work that got done.",
 };
 
 /** Free vs Pro (freemium-model.md). */
@@ -194,8 +194,7 @@ export const PLANS = {
       "Photos embedded in the PDF",
       "All 5 premium templates",
     ],
-    footnote:
-      "7-day free trial on the annual plan. Cancel anytime in the App Store. No weekly traps, ever.",
+    footnote: "7-day free trial on the annual plan. No weekly traps, ever.",
   },
 };
 
@@ -226,6 +225,60 @@ export const PERSONAS = [
     win: "“The overdue reminder found an invoice I’d completely forgotten. That one notification paid for the app by itself.”",
     trade: "Pressure Washing",
   },
+  {
+    name: "Roofers",
+    who: "Storm season is a blur of estimates, tarps and insurance calls.",
+    win: "“Adjusters used to argue with my numbers. Now the invoice has the damage photos built right in — nobody disputes it twice.”",
+    trade: "Roofing",
+  },
+  {
+    name: "Moving crews",
+    who: "Every job ends with someone asking what happened to the dresser.",
+    win: "“I snap the condition of every piece before it goes on the truck. The one time a client called about a scratch, the invoice already had the answer.”",
+    trade: "Movers",
+  },
+  {
+    name: "Pest control techs",
+    who: "Recurring routes, and customers who want proof the treatment happened.",
+    win: "“Before/after shots on every stop mean nobody’s asking ‘did you actually spray?’ anymore. It’s just there on the invoice.”",
+    trade: "Pest Control",
+  },
+  {
+    name: "HVAC technicians",
+    who: "Diagnoses, replacements, and the occasional ‘that’s not what broke’ pushback.",
+    win: "“Photo of the failed part before I swap it, photo of the new one after. Warranty claims stopped being an argument.”",
+    trade: "HVAC",
+  },
+  {
+    name: "Plumbers",
+    who: "Emergency calls, drywall opened up, and a homeowner who wants to see it.",
+    win: "“Showing the leak before I cut anything ends the ‘was that really necessary’ conversation before it starts.”",
+    trade: "Plumbing",
+  },
+  {
+    name: "Electricians",
+    who: "Panel swaps and code fixes nobody can see once the cover’s back on.",
+    win: "“The panel’s closed up in ten minutes, but the invoice still has the wiring shot. That’s what answers inspection questions later.”",
+    trade: "Electrical",
+  },
+  {
+    name: "Property maintenance techs",
+    who: "Move-in, move-out, and a security deposit riding on what the walls looked like.",
+    win: "“Every unit gets photographed before and after now. The deposit disputes that used to eat my week are basically gone.”",
+    trade: "Property Maintenance",
+  },
+  {
+    name: "Carpet cleaners",
+    who: "Stains that come out fine but customers are sure they won’t.",
+    win: "“The before shot is half the sale — they forget how bad it was. The after shot on the invoice closes the argument.”",
+    trade: "Carpet Cleaning",
+  },
+  {
+    name: "Furniture & upholstery repair",
+    who: "Restoring pieces people are precious about, one panel at a time.",
+    win: "“Clients can’t picture what ‘reupholstered’ means until they see their own chair, before and after, on the same invoice.”",
+    trade: "Furniture Repair",
+  },
 ];
 
 /** FAQ — straight answers for a live app. */
@@ -240,7 +293,7 @@ export const FAQ = [
   },
   {
     q: "Do I need to create an account?",
-    a: "No. Open the app and send an invoice. We don't ask for your email or a password to use it. In v1 your data lives only on your phone — nothing is collected.",
+    a: "No. Open the app and send an invoice. We don't ask for your email or a password to use it. Your invoices, photos and client details stay on your phone — the only network activity is subscription validation and app updates, and neither touches your business data.",
   },
   {
     q: "Does it work without signal?",
@@ -248,7 +301,7 @@ export const FAQ = [
   },
   {
     q: "How do photos end up on the invoice?",
-    a: "Snap up to 10 job photos and label them Before / After / Progress. They're timestamped and embedded right in the PDF, so the invoice carries its own proof of work — disputes end before they start.",
+    a: "Snap up to 10 job photos and label them Before / After / Progress. They're embedded right in the PDF, so the invoice carries its own proof of work — disputes end before they start.",
   },
   {
     q: "iPhone or Android?",

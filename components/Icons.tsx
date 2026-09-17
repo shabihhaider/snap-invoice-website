@@ -184,6 +184,61 @@ export const Icon = {
       <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
     </svg>
   ),
+  roofing: (p: IconProps) => (
+    <svg {...base} {...p}>
+      <path d="M3 11 12 4l9 7" />
+      <path d="M5 10v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9" />
+      <path d="M9 20v-5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v5" />
+    </svg>
+  ),
+  movingBox: (p: IconProps) => (
+    <svg {...base} {...p}>
+      <path d="M3 8 12 4l9 4-9 4-9-4Z" />
+      <path d="M3 8v9l9 4 9-4V8" />
+      <path d="M12 12v9" />
+    </svg>
+  ),
+  pestControl: (p: IconProps) => (
+    <svg {...base} {...p}>
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 8V5M12 19v-3M8 12H5M19 12h-3" />
+      <path d="M9 9 6.5 6.5M15 9l2.5-2.5M9 15l-2.5 2.5M15 15l2.5 2.5" />
+    </svg>
+  ),
+  carpet: (p: IconProps) => (
+    <svg {...base} {...p}>
+      <rect x="4" y="4" width="16" height="12" rx="1" />
+      <rect x="7" y="7" width="10" height="6" rx="0.5" />
+      <path d="M5 18h1M8 18h1M11 18h1M14 18h1M17 18h1M19 18h1" />
+    </svg>
+  ),
+  sofa: (p: IconProps) => (
+    <svg {...base} {...p}>
+      <path d="M6 11V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v4" />
+      <rect x="3" y="11" width="18" height="6" rx="1.5" />
+      <path d="M4 17v2.5M20 17v2.5" />
+    </svg>
+  ),
+  key: (p: IconProps) => (
+    <svg {...base} {...p}>
+      <circle cx="8" cy="15" r="4" />
+      <path d="M11 12l9-9M17 5l2 2M14 8l2 2" />
+    </svg>
+  ),
+  hvac: (p: IconProps) => (
+    <svg {...base} {...p}>
+      <circle cx="12" cy="12" r="2" />
+      <path d="M12 10c0-3 2-5 5-5 0 3-2 5-5 5Z" />
+      <path d="M12 14c0 3-2 5-5 5 0-3 2-5 5-5Z" />
+      <path d="M10 12c-3 0-5-2-5-5 3 0 5 2 5 5Z" />
+      <path d="M14 12c3 0 5 2 5 5-3 0-5-2-5-5Z" />
+    </svg>
+  ),
+  droplet: (p: IconProps) => (
+    <svg {...base} {...p}>
+      <path d="M12 3c4 5 7 8.5 7 12a7 7 0 0 1-14 0c0-3.5 3-7 7-12Z" />
+    </svg>
+  ),
 };
 
 export function Android(p: IconProps) {

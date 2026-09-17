@@ -36,6 +36,7 @@ export function Pricing() {
           <div className="inline-flex items-center rounded-full border border-white/10 bg-white/[0.04] p-1">
             <button
               onClick={() => setAnnual(false)}
+              aria-pressed={!annual}
               className={`min-h-11 rounded-full px-6 text-sm font-semibold transition-all duration-500 ease-premium ${
                 !annual
                   ? "bg-cobalt-600 text-white shadow-fab"
@@ -46,6 +47,7 @@ export function Pricing() {
             </button>
             <button
               onClick={() => setAnnual(true)}
+              aria-pressed={annual}
               className={`min-h-11 rounded-full px-6 text-sm font-semibold transition-all duration-500 ease-premium ${
                 annual
                   ? "bg-cobalt-600 text-white shadow-fab"
@@ -92,7 +94,7 @@ export function Pricing() {
                   </li>
                 ))}
               </ul>
-              <p className="mt-6 text-xs text-ink-500">{free.footnote}</p>
+              <p className="mt-6 text-xs text-ink-400">{free.footnote}</p>
               <a
                 href="#get-the-app"
                 className="btn-secondary mt-8 justify-center"
@@ -158,12 +160,12 @@ export function Pricing() {
                   Cancel anytime in your App Store settings.
                 </p>
               </div>
-              <p className="mt-4 text-xs text-ink-500">{pro.footnote}</p>
+              <p className="mt-4 text-xs text-ink-400">{pro.footnote}</p>
               <a
                 href="#get-the-app"
                 className="btn-amber mt-8 justify-center"
               >
-                Try Pro free <Icon.arrow width={16} />
+                {annual ? "Try Pro free" : "Get Pro"} <Icon.arrow width={16} />
               </a>
             </div>
           </Reveal>

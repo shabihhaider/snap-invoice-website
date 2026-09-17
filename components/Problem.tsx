@@ -1,5 +1,3 @@
-"use client";
-
 import { Reveal } from "./Reveal";
 import { Icon } from "./Icons";
 
@@ -38,13 +36,13 @@ export function Problem() {
           {/* Old way */}
           <Reveal>
             <div className="group h-full rounded-card-lg border border-ink-200 bg-ink-50 p-8 transition-shadow duration-500 hover:shadow-card">
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-danger-soft px-3.5 py-1.5 text-sm font-semibold text-danger">
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-danger-soft px-3.5 py-1.5 text-sm font-semibold text-danger-strong">
                 <Icon.x width={15} /> The old way
               </div>
               <ul className="space-y-4">
                 {OLD.map((t, i) => (
-                  <Reveal key={t} delay={0.06 * i} y={12}>
-                    <li className="flex items-start gap-2 text-ink-500">
+                  <li key={t} className="flex items-start gap-2 text-ink-500">
+                    <Reveal delay={0.06 * i} y={12} className="flex items-start gap-2">
                       <Icon.x
                         width={17}
                         className="mt-0.5 flex-none text-danger/60"
@@ -52,8 +50,8 @@ export function Problem() {
                       <span className="text-base leading-snug line-through decoration-danger/30">
                         {t}
                       </span>
-                    </li>
-                  </Reveal>
+                    </Reveal>
+                  </li>
                 ))}
               </ul>
             </div>
@@ -67,8 +65,8 @@ export function Problem() {
               </div>
               <ul className="space-y-4">
                 {NEW.map((t, i) => (
-                  <Reveal key={t} delay={0.08 + 0.06 * i} y={12}>
-                    <li className="flex items-start gap-2">
+                  <li key={t} className="flex items-start gap-2">
+                    <Reveal delay={0.08 + 0.06 * i} y={12} className="flex items-start gap-2">
                       <Icon.check
                         width={17}
                         className="mt-0.5 flex-none text-amber-400"
@@ -76,8 +74,8 @@ export function Problem() {
                       <span className="text-base font-medium leading-snug">
                         {t}
                       </span>
-                    </li>
-                  </Reveal>
+                    </Reveal>
+                  </li>
                 ))}
               </ul>
               {/* Ambient glow blob */}

@@ -9,11 +9,11 @@ export const metadata: Metadata = {
 
 export default function SupportPage() {
   return (
-    <main className="mx-auto max-w-3xl px-5 pb-24 pt-32 text-ink-200">
+    <main className="mx-auto max-w-2xl px-5 pb-24 pt-32 text-ink-200">
       <h1 className="font-display text-4xl font-extrabold tracking-tight text-white">
         Support
       </h1>
-      <p className="mt-2 text-sm text-ink-400">
+      <p className="mt-2 text-ink-400">
         We&apos;re here to help you get the most out of SnapEnvoice.
       </p>
 
@@ -26,7 +26,7 @@ export default function SupportPage() {
             For any questions, issues, or feedback, email us at{" "}
             <a
               href="mailto:snapenvoice@gmail.com"
-              className="text-cobalt-400 underline underline-offset-2 hover:text-cobalt-300"
+              className="text-cobalt-400 underline underline-offset-2 transition-colors hover:text-cobalt-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cobalt-400"
             >
               snapenvoice@gmail.com
             </a>
@@ -43,7 +43,7 @@ export default function SupportPage() {
               <h3 className="font-semibold text-white">
                 How do I create my first invoice?
               </h3>
-              <p className="mt-1 text-sm">
+              <p className="mt-2">
                 Open the app, tap the &ldquo;+&rdquo; button or &ldquo;Snap
                 Job&rdquo; on the home screen, add your client and line items,
                 then tap Save. Your invoice is ready to share as a professional
@@ -54,7 +54,7 @@ export default function SupportPage() {
               <h3 className="font-semibold text-white">
                 How do I attach photos to an invoice?
               </h3>
-              <p className="mt-1 text-sm">
+              <p className="mt-2">
                 While creating an invoice, scroll to the Photos section and tap
                 to add before/after photos from your camera or gallery. They
                 appear in the PDF automatically.
@@ -64,7 +64,7 @@ export default function SupportPage() {
               <h3 className="font-semibold text-white">
                 How do I restore a backup?
               </h3>
-              <p className="mt-1 text-sm">
+              <p className="mt-2">
                 Go to Settings &rarr; Data &amp; Backup &rarr; Import Backup,
                 then select your backup file. All your invoices, estimates,
                 clients, and settings will be restored.
@@ -74,7 +74,7 @@ export default function SupportPage() {
               <h3 className="font-semibold text-white">
                 How do I cancel my Pro subscription?
               </h3>
-              <p className="mt-1 text-sm">
+              <p className="mt-2">
                 Open your iPhone&apos;s Settings &rarr; tap your name &rarr;
                 Subscriptions &rarr; SnapEnvoice &rarr; Cancel Subscription. You
                 keep Pro features until the end of your billing period.
@@ -84,7 +84,7 @@ export default function SupportPage() {
               <h3 className="font-semibold text-white">
                 Is my data safe?
               </h3>
-              <p className="mt-1 text-sm">
+              <p className="mt-2">
                 Yes. All your data stays on your device — we don&apos;t collect
                 or store your invoices, photos, or client information. Use the
                 backup feature to save a copy to your Files app.
@@ -97,7 +97,7 @@ export default function SupportPage() {
           <h2 className="font-display text-xl font-bold text-white">
             App information
           </h2>
-          <ul className="mt-3 space-y-1.5 text-sm">
+          <ul className="mt-3 space-y-2 text-sm">
             <li>
               <span className="text-ink-400">App:</span>{" "}
               <span className="text-white">SnapEnvoice: Invoice Maker</span>
@@ -112,7 +112,7 @@ export default function SupportPage() {
               <span className="text-ink-400">Email:</span>{" "}
               <a
                 href="mailto:snapenvoice@gmail.com"
-                className="text-cobalt-400 underline underline-offset-2 hover:text-cobalt-300"
+                className="text-cobalt-400 underline underline-offset-2 transition-colors hover:text-cobalt-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cobalt-400"
               >
                 snapenvoice@gmail.com
               </a>

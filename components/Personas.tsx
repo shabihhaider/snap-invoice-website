@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { PERSONAS } from "@/lib/content";
 import { Reveal } from "./Reveal";
 import { Icon } from "./Icons";
@@ -8,6 +9,15 @@ const TRADE_ILLUSTRATIONS: Record<string, string> = {
   "Landscaping": "/illustrations/trade-landscaping.webp",
   "Handyman": "/illustrations/trade-handyman.webp",
   "Pressure Washing": "/illustrations/trade-pressure-washer.webp",
+  "Roofing": "/illustrations/trade-roofing.webp",
+  "Movers": "/illustrations/trade-movers.webp",
+  "Pest Control": "/illustrations/trade-pest-control.webp",
+  "HVAC": "/illustrations/trade-hvac.webp",
+  "Plumbing": "/illustrations/trade-plumbing.webp",
+  "Electrical": "/illustrations/trade-electrical.webp",
+  "Property Maintenance": "/illustrations/trade-property-maintenance.webp",
+  "Carpet Cleaning": "/illustrations/trade-carpet-cleaning.webp",
+  "Furniture Repair": "/illustrations/trade-furniture-repair.webp",
 };
 
 /** Map persona trades to their icons. */
@@ -16,6 +26,15 @@ const TRADE_ICONS: Record<string, keyof typeof Icon> = {
   "Landscaping": "leaf",
   "Handyman": "wrench",
   "Pressure Washing": "sprayNozzle",
+  "Roofing": "roofing",
+  "Movers": "movingBox",
+  "Pest Control": "pestControl",
+  "HVAC": "hvac",
+  "Plumbing": "droplet",
+  "Electrical": "bolt",
+  "Property Maintenance": "key",
+  "Carpet Cleaning": "carpet",
+  "Furniture Repair": "sofa",
 };
 
 export function Personas() {
@@ -41,16 +60,21 @@ export function Personas() {
             return (
               <Reveal key={p.name} delay={(i % 2) * 0.1}>
                 <div className="group relative flex h-full flex-col overflow-hidden rounded-card-lg border border-ink-200 bg-white p-6 shadow-card transition-all duration-500 ease-premium hover:-translate-y-1 hover:shadow-raised">
-                  {/* Background illustration */}
+                  {/* Background illustration — real next/image lazy-load,
+                      not a CSS background-image (which has no lazy-load
+                      equivalent and was forcing all 13 illustrations to
+                      load immediately regardless of scroll position). */}
                   {illustration && (
-                    <div
-                      className="pointer-events-none absolute inset-0 bg-right-bottom bg-no-repeat opacity-[0.12] transition-opacity duration-500 group-hover:opacity-[0.18]"
-                      style={{
-                        backgroundImage: `url(${illustration})`,
-                        backgroundSize: "55%",
-                        backgroundPosition: "92% 85%",
-                      }}
-                    />
+                    <div className="pointer-events-none absolute bottom-0 right-0 h-[55%] w-[55%] opacity-[0.12] transition-opacity duration-500 group-hover:opacity-[0.18]">
+                      <Image
+                        src={illustration}
+                        alt=""
+                        fill
+                        loading="lazy"
+                        sizes="(max-width: 640px) 160px, 220px"
+                        className="object-contain object-right-bottom"
+                      />
+                    </div>
                   )}
 
                   <div className="relative">
@@ -83,7 +107,7 @@ export function Personas() {
           })}
         </div>
         <Reveal className="mt-8">
-          <p className="text-center text-xs text-ink-400">
+          <p className="text-center text-xs text-ink-500">
             Composite use-cases drawn from real trade-community research, shown
             to illustrate who SnapEnvoice is built for.
           </p>

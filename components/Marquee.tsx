@@ -12,6 +12,15 @@ const TRADE_ICONS: Record<string, keyof typeof Icon> = {
   "Cleaning": "sprayBottle",
   "Junk Removal": "truck",
   "Mobile Mechanics": "gear",
+  "Roofing": "roofing",
+  "Movers": "movingBox",
+  "Pest Control": "pestControl",
+  "HVAC": "hvac",
+  "Plumbing": "droplet",
+  "Electrical": "bolt",
+  "Property Maintenance": "key",
+  "Carpet Cleaning": "carpet",
+  "Furniture Repair": "sofa",
 };
 
 /**
@@ -29,20 +38,20 @@ export function Marquee() {
 
   return (
     <div className="border-y border-ink-100 bg-white py-8 sm:py-10">
-      <p className="mb-5 text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-400">
+      <p className="mb-5 text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-500">
         Built for the trades that get paid per job
       </p>
 
       {/* Top row — scrolls left */}
       <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-        <div className="flex w-max animate-marquee gap-10 whitespace-nowrap">
+        <div className="flex w-max animate-marquee gap-10 whitespace-nowrap motion-reduce:animate-none">
           {top.map((t, i) => {
             const iconKey = TRADE_ICONS[t];
             const IconEl = iconKey ? Icon[iconKey] : null;
             return (
               <span
                 key={`${t}-${i}`}
-                className="flex items-center gap-2 font-display text-base font-bold text-ink-300"
+                className="flex items-center gap-2 font-display text-base font-bold text-ink-500"
               >
                 {IconEl && <IconEl width={18} className="text-cobalt-400" />}
                 {t}
@@ -54,14 +63,14 @@ export function Marquee() {
 
       {/* Bottom row — scrolls right */}
       <div className="mt-3 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-        <div className="flex w-max animate-marquee-reverse gap-10 whitespace-nowrap">
+        <div className="flex w-max animate-marquee-reverse gap-10 whitespace-nowrap motion-reduce:animate-none">
           {bottom.map((t, i) => {
             const iconKey = TRADE_ICONS[t];
             const IconEl = iconKey ? Icon[iconKey] : null;
             return (
               <span
                 key={`${t}-r-${i}`}
-                className="flex items-center gap-2 font-display text-base font-bold text-ink-400"
+                className="flex items-center gap-2 font-display text-base font-bold text-ink-600"
               >
                 {IconEl && <IconEl width={18} className="text-amber-400" />}
                 {t}

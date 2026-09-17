@@ -152,7 +152,7 @@ export function HowItWorks() {
                 <h3 className="mt-4 font-display text-2xl font-extrabold text-ink-900">
                   {step.title}
                 </h3>
-                <p className="mt-2 text-sm font-semibold text-amber-600">
+                <p className="mt-2 text-sm font-semibold text-amber-700">
                   {step.line}
                 </p>
                 <p className="mt-3 max-w-xs text-sm leading-relaxed text-ink-500">

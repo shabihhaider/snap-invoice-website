@@ -26,7 +26,7 @@ const POINTS: ReadonlyArray<{
   {
     icon: "file-check",
     title: "Printed, not attached",
-    body: "Photos sit inside the PDF, timestamped. Nothing to lose in a thread.",
+    body: "Photos sit inside the PDF itself. Nothing to lose in a thread.",
   },
   {
     icon: "shield",
@@ -93,9 +93,9 @@ export function PhotoProof() {
             </h2>
             <p className="mt-4 max-w-xl text-lg leading-relaxed text-ink-300">
               Every invoice carries its own evidence. Before and after,
-              timestamped, printed straight into the PDF&nbsp;&mdash; the work
-              speaks before you have to. No camera-roll digging, no money
-              knocked off to end an argument.
+              printed straight into the PDF&nbsp;&mdash; the work speaks
+              before you have to. No camera-roll digging, no money knocked
+              off to end an argument.
             </p>
 
             <div className="mt-6 inline-flex flex-wrap items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-4 py-2 text-sm">
@@ -173,7 +173,7 @@ export function PhotoProof() {
                     className="h-auto w-full"
                   />
                   <p className="px-2 pb-2 text-center text-xs font-medium text-ink-300">
-                    Before &middot; After &middot; Timestamped
+                    Before &middot; After &middot; In the PDF
                   </p>
                 </div>
               </div>

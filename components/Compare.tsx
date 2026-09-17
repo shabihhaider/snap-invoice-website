@@ -1,144 +1,35 @@
-"use client";
-
-import { COMPARE } from "@/lib/content";
+import { WHY_DIFFERENT } from "@/lib/content";
 import { Reveal } from "./Reveal";
-import { Icon } from "./Icons";
 
-function Cell({ value, hero }: { value: string; hero: boolean }) {
-  if (value === "yes")
-    return (
-      <span
-        className={`inline-flex h-7 w-7 items-center justify-center rounded-full transition-transform duration-300 ${
-          hero
-            ? "bg-success text-white shadow-[0_0_12px_rgba(16,185,129,0.3)]"
-            : "bg-success-soft text-success"
-        }`}
-      >
-        <Icon.check width={15} />
-      </span>
-    );
-  if (value === "no")
-    return (
-      <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-ink-100 text-ink-300">
-        <Icon.x width={14} />
-      </span>
-    );
-  if (value === "partial")
-    return (
-      <span className="rounded-full bg-amber-50 px-2 py-0.5 text-[11px] font-semibold text-amber-600">
-        partial
-      </span>
-    );
-  return (
-    <span
-      className={`text-sm font-medium ${hero ? "text-white" : "text-ink-600"}`}
-    >
-      {value}
-    </span>
-  );
-}
-
+/**
+ * Brand manifesto — a deliberate pause, not another claims list.
+ * Features and PhotoProof already carry the "what"; Pricing carries the
+ * "how much." This section exists only to state the belief behind the
+ * product, so it stays text-only and roomy rather than reaching for a
+ * bento grid or icon set that would just restate those sections.
+ */
 export function Compare() {
-  const { columns, rows } = COMPARE;
+  const { eyebrow, heading, lead, closing } = WHY_DIFFERENT;
   return (
     <section id="compare" className="section-padding bg-white">
-      <div className="mx-auto max-w-6xl px-5">
-        <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="eyebrow text-cobalt-600">How we compare</p>
-          <h2 className="mt-4 font-display text-[clamp(30px,4vw,48px)] font-extrabold leading-[1.05] tracking-tight text-ink-900">
-            The photo-first one. Without the traps.
+      <div className="mx-auto max-w-3xl px-5 text-center">
+        <Reveal>
+          <p className="eyebrow text-cobalt-600">{eyebrow}</p>
+          <h2 className="mt-4 font-display text-[clamp(32px,5vw,56px)] font-extrabold leading-[1.08] tracking-tight text-ink-900">
+            {heading}
           </h2>
-          <p className="mt-4 text-lg leading-relaxed text-ink-500">
-            Others bolt photos onto a form or bill you $8.99 a week. We lead
-            with the camera and price it honestly.
+        </Reveal>
+
+        <Reveal delay={0.1}>
+          <p className="mx-auto mt-8 max-w-xl text-xl leading-relaxed text-ink-500">
+            {lead}
           </p>
         </Reveal>
 
-        {/* Win counter */}
-        <Reveal className="mt-10 flex justify-center">
-          <div className="inline-flex items-center gap-2 rounded-full bg-cobalt-50 px-4 py-2 text-sm font-semibold text-cobalt-700">
-            <Icon.check width={16} className="text-cobalt-600" />
-            SnapEnvoice leads in 5 of 6 categories
-          </div>
-        </Reveal>
-
-        <Reveal className="mt-8">
-          <div className="relative">
-            <div className="overflow-x-auto rounded-card-lg border border-ink-200 bg-white shadow-card">
-              <table className="w-full min-w-[720px] border-separate border-spacing-0">
-                <thead>
-                  <tr>
-                    <th className="w-[26%] p-4 text-left" />
-                    {columns.map((c, i) => {
-                      const hero = i === 0;
-                      return (
-                        <th
-                          key={c}
-                          className={`p-4 text-center align-bottom ${
-                            hero
-                              ? "rounded-t-[23px] bg-cobalt-600 text-white"
-                              : "text-ink-500"
-                          }`}
-                        >
-                          <span
-                            className={`font-display text-sm font-bold ${hero ? "" : "text-ink-700"}`}
-                          >
-                            {c}
-                          </span>
-                          {hero && (
-                            <span className="mt-1 block text-[11px] font-semibold uppercase tracking-wider text-amber-300">
-                              That&apos;s us
-                            </span>
-                          )}
-                        </th>
-                      );
-                    })}
-                  </tr>
-                </thead>
-                <tbody>
-                  {rows.map((row, ri) => (
-                    <tr key={row.label} className="transition-colors duration-300 hover:bg-ink-50/50">
-                      <td className="border-t border-ink-100 p-4 text-sm font-semibold text-ink-800">
-                        {row.label}
-                      </td>
-                      {row.values.map((v, ci) => {
-                        const hero = ci === 0;
-                        const last = ri === rows.length - 1;
-                        return (
-                          <td
-                            key={ci}
-                            className={`border-t p-4 text-center ${
-                              hero
-                                ? `border-cobalt-500/20 bg-cobalt-600 ${last ? "rounded-b-[23px]" : ""}`
-                                : "border-ink-100"
-                            }`}
-                          >
-                            <Cell value={v} hero={hero} />
-                          </td>
-                        );
-                      })}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            {/* Edge fade + swipe hint — the table's min-w-[720px] overflows
-                its container below ~768px, same drag-to-scroll pattern as
-                the screenshot carousel. */}
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-10 rounded-r-card-lg bg-gradient-to-l from-white to-transparent md:hidden" />
-          </div>
-          <p className="mt-3 text-center text-xs font-medium text-ink-400 md:hidden">
-            <span className="inline-flex items-center gap-1.5">
-              Swipe to see the full comparison
-              <svg aria-hidden width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </span>
-          </p>
-          <p className="mt-4 text-center text-xs text-ink-400">
-            Pricing verified July 2026 from vendor sites. Competitor names are
-            trademarks of their owners; comparison is for reference only.
+        <Reveal delay={0.18}>
+          <div className="mx-auto mt-8 h-px w-12 bg-ink-200" />
+          <p className="mx-auto mt-8 max-w-xl font-display text-xl font-bold leading-snug text-ink-900">
+            {closing}
           </p>
         </Reveal>
       </div>

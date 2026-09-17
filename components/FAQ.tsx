@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { FAQ as FAQ_ITEMS } from "@/lib/content";
 import { Reveal } from "./Reveal";
 
@@ -34,6 +33,8 @@ export function FAQ() {
                     onClick={() => setOpen(isOpen ? null : i)}
                     className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
                     aria-expanded={isOpen}
+                    aria-controls={`faq-answer-${i}`}
+                    id={`faq-question-${i}`}
                   >
                     <span className="font-display text-base font-bold text-ink-900">
                       {item.q}
@@ -58,22 +59,27 @@ export function FAQ() {
                       </svg>
                     </span>
                   </button>
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
-                      >
-                        <div className="border-t border-ink-100 px-6 pb-6 pt-4">
-                          <p className="text-base leading-relaxed text-ink-600">
-                            {item.a}
-                          </p>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  {/* Always mounted — a search crawler or AI answer engine
+                      reading the rendered HTML text sees every answer, not
+                      just the one currently open. The expand/collapse is a
+                      pure-CSS grid-rows animation (no height measurement,
+                      no conditional unmount) so nothing here gates on JS. */}
+                  <div
+                    id={`faq-answer-${i}`}
+                    role="region"
+                    aria-labelledby={`faq-question-${i}`}
+                    className={`grid transition-[grid-template-rows,opacity] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+                      isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <div className="border-t border-ink-100 px-6 pb-6 pt-4">
+                        <p className="text-base leading-relaxed text-ink-600">
+                          {item.a}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </Reveal>
             );

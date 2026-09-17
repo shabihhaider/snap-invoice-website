@@ -10,7 +10,7 @@ const UPDATED = "August 8, 2026";
 
 export default function TermsPage() {
   return (
-    <main className="mx-auto max-w-3xl px-5 pb-24 pt-32 text-ink-200">
+    <main className="mx-auto max-w-2xl px-5 pb-24 pt-32 text-ink-200">
       <h1 className="font-display text-4xl font-extrabold tracking-tight text-white">
         SnapEnvoice Terms of Service
       </h1>
@@ -99,7 +99,10 @@ export default function TermsPage() {
         <div>
           <h2 className="font-display text-xl font-bold text-white">8. Contact</h2>
           <p className="mt-2">
-            <a href="mailto:snapenvoice@gmail.com" className="text-cobalt-400 underline">
+            <a
+              href="mailto:snapenvoice@gmail.com"
+              className="inline-flex min-h-11 items-center text-cobalt-400 underline underline-offset-4 transition-colors hover:text-cobalt-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cobalt-400"
+            >
               snapenvoice@gmail.com
             </a>
           </p>

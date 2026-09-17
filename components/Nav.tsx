@@ -80,7 +80,7 @@ export function Nav() {
           aria-label="SnapEnvoice home"
           className="inline-flex min-h-11 shrink-0 items-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-600 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
         >
-          <Logo invert />
+          <Logo invert priority />
         </a>
 
         {/* Desktop nav links with active indicator */}
@@ -178,7 +178,7 @@ export function Nav() {
             href="#get-the-app"
             onClick={closeMenu}
             tabIndex={open ? undefined : -1}
-            className="btn-primary group mt-3 min-h-11 gap-2 py-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-600 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+            className="btn-primary group mt-3 min-h-11 gap-2 py-3 text-sm"
           >
             Get the app
             <span className="btn-orb">

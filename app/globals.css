@@ -22,7 +22,7 @@ body {
 }
 
 ::selection {
-  background: rgba(245, 158, 11, 0.4);
+  background: rgba(37, 99, 235, 0.92); /* cobalt-600 — primary/trust brand color */
   color: #ffffff;
 }
 
@@ -137,17 +137,19 @@ body {
     opacity: 0.5;
   }
 
-  /* Buttons */
+  /* Buttons — each gets its own focus-visible ring here (rather than at
+     every call site) so keyboard focus is never silently dropped on a
+     button that forgets to add it locally. */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-cobalt-600 px-6 py-3.5 font-sans font-semibold text-white shadow-fab transition-all duration-500 ease-premium hover:bg-cobalt-700 hover:shadow-glow active:scale-[0.98];
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-cobalt-600 px-6 py-3.5 font-sans font-semibold text-white shadow-fab transition-all duration-500 ease-premium hover:bg-cobalt-700 hover:shadow-glow active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-400 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950;
   }
 
   .btn-amber {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-amber-500 px-6 py-3.5 font-sans font-semibold text-ink-950 shadow-amber transition-all duration-500 ease-premium hover:bg-amber-400 active:scale-[0.98];
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-amber-500 px-6 py-3.5 font-sans font-semibold text-ink-950 shadow-amber transition-all duration-500 ease-premium hover:bg-amber-400 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3.5 font-sans font-semibold text-white transition-all duration-500 ease-premium hover:border-white/25 hover:bg-white/10 active:scale-[0.98];
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3.5 font-sans font-semibold text-white transition-all duration-500 ease-premium hover:border-white/25 hover:bg-white/10 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950;
   }
 
   .btn-orb {
@@ -165,6 +167,27 @@ body {
 }
 
 /* ─── Hero Animations ──────────────────────────────────────── */
+
+/* CSS-only entrance for the hero's above-the-fold content. Framer Motion's
+   `initial={{opacity:0}}` pattern makes Chrome exclude the element from LCP
+   candidacy until JS hydrates and the animation resolves — these elements
+   are the hero's headline/subhead/hero art, exactly what LCP measures, so
+   they animate with plain CSS instead (paints immediately, no JS gate).
+   `prefers-reduced-motion` is already handled globally below. */
+@keyframes hero-fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hero-fade-up-lg {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hero-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
 
 @keyframes hero-ticker {
   0%, 18%   { transform: translateY(0); }

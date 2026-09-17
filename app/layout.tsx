@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { ScrollProgress } from "@/components/ScrollProgress";
+import { SITE_URL } from "@/lib/content";
 import "./globals.css";
 
 /* Self-hosted variable fonts (no build-time Google Fonts dependency,
@@ -20,10 +21,9 @@ const inter = localFont({
   display: "swap",
 });
 
-const SITE_URL = "https://snapenvoice.app";
 const TITLE = "SnapEnvoice — Invoice with photo proof in under 60 seconds";
 const DESCRIPTION =
-  "Snap. Price. Send. The camera-first invoicing app for contractors and tradespeople. Before/after photo proof, works offline, no account. Free on iPhone — invoice with photo proof in under 60 seconds.";
+  "Snap. Price. Send. The camera-first invoicing app for contractors — photo proof embedded in every PDF, works offline, no account. Free on iPhone.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -34,6 +34,9 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   applicationName: "SnapEnvoice",
   category: "business",
+  authors: [{ name: "Arham Amjad" }],
+  creator: "Arham Amjad",
+  publisher: "Arham Amjad",
   alternates: {
     canonical: "/",
   },
@@ -50,6 +53,12 @@ export const metadata: Metadata = {
     "handyman invoice app",
     "pressure washing invoice",
     "invoice with photos",
+    "roofing invoice app",
+    "moving company invoice app",
+    "pest control invoice app",
+    "property maintenance invoice app",
+    "plumber invoice app",
+    "HVAC invoice app",
   ],
   openGraph: {
     type: "website",
@@ -85,8 +94,11 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: [{ url: "/favicon-32.svg", type: "image/svg+xml" }],
-    apple: "/logos/app-icon-192.svg",
+    icon: [
+      { url: "/favicon-32.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon-16.png", type: "image/png", sizes: "16x16" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
 };
 

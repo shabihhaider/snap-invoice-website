@@ -70,8 +70,13 @@ export function Screenshots() {
     if (!container || !inner) return;
 
     const calc = () => {
-      const overflow = inner.scrollWidth - container.clientWidth;
-      setDragBounds({ left: -Math.max(overflow, 0), right: 0 });
+      const overflow = Math.max(inner.scrollWidth - container.clientWidth, 0);
+      setDragBounds({ left: -overflow, right: 0 });
+      /* Framer only clamps to dragConstraints while a drag is in flight, never
+         when the constraints themselves move. Widening the viewport after a
+         drag would otherwise leave the rail parked past its last card with
+         dead space on the right, and no gesture to bring it back. */
+      if (x.get() < -overflow) x.set(-overflow);
     };
     calc();
 
@@ -79,7 +84,7 @@ export function Screenshots() {
     ro.observe(container);
     ro.observe(inner);
     return () => ro.disconnect();
-  }, []);
+  }, [x]);
 
   /* Arrow enabled-state tracks the live drag offset, so dragging by hand and
      stepping with the arrows stay in sync. */
@@ -92,15 +97,22 @@ export function Screenshots() {
     return x.on("change", sync);
   }, [x, dragBounds.left]);
 
+  /* A step animation left running would fight the pointer for ownership of `x`
+     if the user grabs the rail mid-glide, and would outlive the component on
+     unmount. Keep the handle so both can stop it. */
+  const stepAnim = useRef<ReturnType<typeof animate> | null>(null);
+  useEffect(() => () => stepAnim.current?.stop(), []);
+
   /* One card + gap per press, clamped to the same bounds the drag uses. */
   function step(direction: 1 | -1) {
+    stepAnim.current?.stop();
     const card = innerRef.current?.children[0] as HTMLElement | undefined;
     const delta = (card?.getBoundingClientRect().width ?? 250) + CARD_GAP;
     const target = Math.min(
       0,
       Math.max(dragBounds.left, x.get() - direction * delta),
     );
-    animate(x, target, {
+    stepAnim.current = animate(x, target, {
       duration: reduce ? 0 : 0.55,
       ease: [0.32, 0.72, 0, 1],
     });
@@ -133,6 +145,7 @@ export function Screenshots() {
           drag="x"
           dragConstraints={dragBounds}
           dragElastic={0.08}
+          onDragStart={() => stepAnim.current?.stop()}
           style={{ x }}
           className="flex cursor-grab gap-4 px-5 pb-8 active:cursor-grabbing"
         >
@@ -189,7 +202,8 @@ export function Screenshots() {
       </div>
 
       {/* Hint — the affordance differs by input, so the copy does too */}
-      <p className="mt-2 text-center text-sm font-medium text-ink-400">
+      {/* Sits outside the container, so it carries the 20px gutter itself */}
+      <p className="mt-2 px-5 text-center text-sm font-medium text-ink-500">
         <span className="inline-flex items-center gap-2">
           <svg
             aria-hidden

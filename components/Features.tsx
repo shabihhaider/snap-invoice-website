@@ -112,7 +112,7 @@ export function Features() {
                 >
                   {/* Icon */}
                   <div
-                    className={`mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 ${
+                    className={`mb-5 inline-flex h-12 w-12 items-center justify-center rounded-card transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 ${
                       isMoat
                         ? "bg-amber-500/15 text-amber-400"
                         : "bg-cobalt-500/15 text-cobalt-300"
@@ -129,7 +129,7 @@ export function Features() {
                   {isMoat && (
                     <span className="mt-4 inline-flex items-center gap-2 rounded-full bg-amber-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-amber-400">
                       <Icon.spark width={12} />
-                      Our moat
+                      Sets us apart
                     </span>
                   )}
 
@@ -155,7 +155,7 @@ export function Features() {
                 <div className="font-display text-3xl font-extrabold leading-[1.05] text-white">
                   {s.value}
                 </div>
-                <div className="mt-1.5 text-xs leading-tight text-ink-400">
+                <div className="mt-2 text-xs leading-tight text-ink-400">
                   {s.label}
                 </div>
               </div>

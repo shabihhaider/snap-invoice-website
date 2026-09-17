@@ -18,21 +18,21 @@ export function Footer() {
             </div>
             <p className="mt-5 inline-flex items-center gap-2 rounded-full bg-white/[0.04] px-3 py-1.5 text-xs font-medium text-ink-400">
               <span className="h-2 w-2 rounded-full bg-success-bright" />
-              No data collected &middot; your invoices stay on your phone
+              Your invoices stay on your phone &middot; no account required
             </p>
           </div>
 
           <div className="flex gap-10">
             <div>
-              <div className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-ink-500">
+              <div className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-ink-400">
                 Explore
               </div>
-              <ul className="space-y-2 text-sm">
+              <ul className="-my-3 text-sm">
                 {NAV_LINKS.map((l) => (
                   <li key={l.href}>
                     <a
                       href={l.href}
-                      className="transition-colors duration-300 hover:text-white"
+                      className="flex min-h-11 items-center rounded-full transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-600 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
                     >
                       {l.label}
                     </a>
@@ -41,14 +41,14 @@ export function Footer() {
               </ul>
             </div>
             <div>
-              <div className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-ink-500">
+              <div className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-ink-400">
                 Contact
               </div>
-              <ul className="space-y-2 text-sm">
+              <ul className="-my-3 text-sm">
                 <li>
                   <a
                     href="mailto:snapenvoice@gmail.com"
-                    className="transition-colors duration-300 hover:text-white"
+                    className="flex min-h-11 items-center rounded-full transition-colors duration-300 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-600 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
                   >
                     Email Support
                   </a>
@@ -60,14 +60,23 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-2 border-t border-white/[0.06] pt-6 text-xs sm:flex-row">
           <span>&copy; {new Date().getFullYear()} SnapEnvoice. All rights reserved.</span>
-          <div className="flex gap-4">
-            <a href="/support" className="transition-colors hover:text-white">
+          <div className="-my-3 flex gap-4">
+            <a
+              href="/support"
+              className="inline-flex min-h-11 items-center rounded-full transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-600 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+            >
               Support
             </a>
-            <a href="/privacy" className="transition-colors hover:text-white">
+            <a
+              href="/privacy"
+              className="inline-flex min-h-11 items-center rounded-full transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-600 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+            >
               Privacy
             </a>
-            <a href="/terms" className="transition-colors hover:text-white">
+            <a
+              href="/terms"
+              className="inline-flex min-h-11 items-center rounded-full transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cobalt-600 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950"
+            >
               Terms
             </a>
           </div>
